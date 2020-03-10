@@ -1,7 +1,25 @@
 import React from "react"
 import { Link } from "gatsby"
+import { rhythm } from "../utils/typography"
+import "./layout.css"
 
-import { rhythm, scale } from "../utils/typography"
+const NavBar = () => {
+  return (
+    <nav>
+      <ol>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/tags">Tags</Link>
+        </li>
+      </ol>
+    </nav>
+  )
+}
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -11,7 +29,6 @@ const Layout = ({ location, title, children }) => {
     header = (
       <h1
         style={{
-          ...scale(1.5),
           marginBottom: rhythm(1.5),
           marginTop: 0,
         }}
@@ -59,11 +76,10 @@ const Layout = ({ location, title, children }) => {
       }}
     >
       <header>{header}</header>
+      <NavBar />
       <main>{children}</main>
       <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+        © {new Date().getFullYear()} Yong Sheng Tan
       </footer>
     </div>
   )

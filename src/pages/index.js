@@ -16,19 +16,24 @@ const BlogIndex = ({ data, location }) => {
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
+        const tags = node.frontmatter.tags || []
+        const tagsList = tags.map(t => (
+          <Link to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
+        )).reduce((prev, curr) => [prev, ', ', curr])
         return (
-          <article key={node.fields.slug}>
+          <article key={node.frontmatter.slug}>
             <header>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <Link style={{ boxShadow: `none` }} to={node.frontmatter.slug}>
                   {title}
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
+              <p>Tags: {tagsList}</p>
             </header>
             <section>
               <p
@@ -53,7 +58,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           excerpt
@@ -61,9 +69,11 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
+            slug
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tags
           }
         }
       }

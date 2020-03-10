@@ -1,15 +1,19 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
+require("prismjs/themes/prism-tomorrow.css")
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
+  const tags = post.frontmatter.tags || []
+  const tagsList = tags.map(t => (
+      <Link to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
+  )).reduce((prev, curr) => [prev, ', ', curr])
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -19,23 +23,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       />
       <article>
         <header>
-          <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
-          <p
-            style={{
-              ...scale(-1 / 5),
-              display: `block`,
-              marginBottom: rhythm(1),
-            }}
-          >
-            {post.frontmatter.date}
-          </p>
+          <h2>{post.frontmatter.title}</h2>
+          <p>{post.frontmatter.date}</p>
+          <p>Tags: {tagsList}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
@@ -95,6 +85,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
     }
   }

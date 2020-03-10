@@ -1,0 +1,8 @@
+nav ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    color: black;
+    margin-left: 1.58rem;
+}
