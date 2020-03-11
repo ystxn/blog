@@ -6,10 +6,10 @@ import SEO from "../components/seo"
 class PageTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
+    const { title, description } = this.props.data.site.siteMetadata
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={title} subTitle={description}>
         <SEO
           title={post.frontmatter.title}
           description={post.excerpt}
@@ -28,6 +28,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

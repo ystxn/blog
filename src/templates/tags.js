@@ -6,13 +6,13 @@ import SEO from "../components/seo"
 const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
-  const siteTitle = data.site.siteMetadata.title
-  const title = `#${tag} posts`
+  const { title, description } = data.site.siteMetadata
+  const pageTitle = `#${tag} posts`
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title={title} />
-      <h2>{title} ({totalCount})</h2>
+    <Layout location={location} title={title} subTitle={description}>
+      <SEO title={pageTitle} />
+      <h2>{pageTitle} ({totalCount})</h2>
       <ul>
         {edges.map(({ node }) => {
           const { title, slug } = node.frontmatter
@@ -23,7 +23,6 @@ const Tags = ({ pageContext, data, location }) => {
           )
         })}
       </ul>
-      <Link to="/tags">All tags</Link>
     </Layout>
   )
 }
@@ -35,6 +34,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(

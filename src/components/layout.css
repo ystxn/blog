@@ -1,11 +1,34 @@
-h2, h3 {
-    margin-top: 0
+* { color: #bbbbbb }
+html { background-color: #1e1e1e }
+a {
+    color: lightseagreen;
+    text-decoration: none;
+    box-shadow: none;
 }
-nav ol {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    list-style: none;
-    color: black;
-    margin-bottom: 1rem;
+a:hover {
+    color: lightskyblue;
+    border-bottom: lightskyblue 1px dashed;
 }
+h2, h3 { margin-top: 0 }
+hr { margin: 1rem 0; border-top: rgba(230, 230, 230, 0.6) 1px dashed; }
+ul { margin-left: 2rem }
+@media only screen and (max-width: 480px) {
+    nav.main-nav ol { margin-left: 0 }
+}
+nav.main-nav ol { list-style: none }
+nav.main-nav li { display: inline-block }
+nav.main-nav li a {
+    background: lightseagreen;
+    padding: 0.4rem 0.8rem;
+    margin-right: 1.6rem;
+    border-radius: 0.5rem;
+}
+.main-header a { color: #cccccc }
+.main-header a:hover { color: #dddddd; border: none }
+.main-header h2 { margin: 0  }
+.main-header h5 { color: #999999; font-weight: 400; margin: 0.5rem 0 0 0 }
+.main-nav { margin-top: 1.5rem }
+.main-nav li a { color: #333; font-family: 'JBM' }
+.main-nav li a:hover { color: black; background: lightskyblue; border: none }
+footer { margin-top: 3rem }
+footer div p { color: #888 }

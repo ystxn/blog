@@ -7,12 +7,12 @@ const TagsPage = ({
   data: {
     allMarkdownRemark: { group },
     site: {
-      siteMetadata: { title },
+      siteMetadata: { title, description },
     },
   },
   location,
 }) => (
-  <Layout location={location} title={title}>
+  <Layout location={location} title={title} subTitle={description}>
     <SEO
       title="Tags"
       keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -41,6 +41,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(limit: 2000) {

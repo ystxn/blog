@@ -1,21 +1,19 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
 import "./blog-post.css"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata.title
+  const { title, description } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
   const tagsList = tags.map(t => (
       <Link to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
   )).reduce((prev, curr) => [prev, ', ', curr])
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={title} subTitle={description}>
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
@@ -28,8 +26,6 @@ const BlogPostTemplate = ({ data, location }) => {
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
       </article>
-      <hr style={{ marginBottom: rhythm(1) }} />
-      <Bio />
     </Layout>
   )
 }
@@ -41,6 +37,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

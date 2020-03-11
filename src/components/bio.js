@@ -40,28 +40,32 @@ const Bio = () => {
     height: "50px",
     borderRadius: "50%",
     margin: "0.3em 0.8em 0.8em 0",
-    border: "skyblue 2px solid"
+    border: "lightseagreen 2px solid"
   }
 
   return (
-    <div
-      style={{
-        display: `flex`,
-      }}
-    >
-      <img src={profilePic} alt={author.name} style={profilePicStyle} />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        <br />
-        <a target={`_blank`} href={`https://twitter.com/${social.twitter}`}>
-          Twitter
-        </a>
-        &nbsp; &middot; &nbsp;
-        <a target={`_blank`} href={`https://linkedin.com/in/${social.linkedin}`}>
-          LinkedIn
-        </a>
-      </p>
-    </div>
+    <>
+      <hr />
+      <div
+        style={{
+          display: `flex`,
+        }}
+      >
+        <img src={profilePic} alt={author.name} style={profilePicStyle} />
+        <p>
+          Written by <strong>{author.name}</strong> {author.summary}
+          <br />
+          <a target={`_blank`} href={`https://twitter.com/${social.twitter}`}>
+            Twitter
+          </a>
+          &nbsp; &middot; &nbsp;
+          <a target={`_blank`} href={`https://linkedin.com/in/${social.linkedin}`}>
+            LinkedIn
+          </a>
+        </p>
+      </div>
+      <hr />
+    </>
   )
 }
 
