@@ -12,14 +12,13 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
+      <SEO title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         const tags = node.frontmatter.tags || []
-        const tagsList = tags.map(t => (
-          <Link to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
-        )).reduce((prev, curr) => [prev, ', ', curr])
+        const tagsList = tags
+          .map(t => <Link to={`/tags/${t.replace(/ /g, "-")}`}>#{t}</Link>)
+          .reduce((prev, curr) => [prev, ", ", curr])
         return (
           <article key={node.frontmatter.slug}>
             <header>
@@ -28,23 +27,28 @@ const BlogIndex = ({ data, location }) => {
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: `none` }} to={node.frontmatter.slug}>
+                <Link
+                  style={{ boxShadow: `none` }}
+                  to={`/${node.frontmatter.slug}`}
+                >
                   {title}
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
-              <p>Tags: {tagsList}</p>
+              <p>{tagsList}</p>
             </header>
             <section>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
+                  __html: node.excerpt,
                 }}
               />
             </section>
           </article>
         )
       })}
+      <hr style={{ marginBottom: rhythm(1) }} />
+      <Bio />
     </Layout>
   )
 }
@@ -70,9 +74,8 @@ export const pageQuery = graphql`
           }
           frontmatter {
             slug
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "MMMM DD, YYYY h:mm a")
             title
-            description
             tags
           }
         }

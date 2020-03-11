@@ -7,7 +7,7 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 const SEO = ({ description, lang, meta, title }) => {
@@ -26,6 +26,11 @@ const SEO = ({ description, lang, meta, title }) => {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const excludeFromTitle = [ 'Home', '' ]
+  let displayTitle = 'YS Blog'
+  if (excludeFromTitle.indexOf(title) === -1) {
+    displayTitle = `${displayTitle}: ${title}`
+  }
 
   return (
     <Helmet
@@ -33,7 +38,7 @@ const SEO = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={displayTitle}
       meta={[
         {
           name: `description`,

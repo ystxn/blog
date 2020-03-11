@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "blog.yong.space",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Yong Sheng's Blog",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Yong Sheng Tan <ys@yong.space>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -27,7 +27,7 @@
     "prismjs": "^1.19.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1",
+    "react-helmet": "^6.0.0-beta.2",
     "react-typography": "^0.16.19",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",
@@ -38,16 +38,7 @@
   "devDependencies": {
     "prettier": "^1.19.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

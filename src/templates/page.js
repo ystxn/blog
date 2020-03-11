@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -13,9 +12,9 @@ class PageTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
+          description={post.excerpt}
         />
-        <h1>{post.frontmatter.title}</h1>
+        <h2>{post.frontmatter.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </Layout>
     )

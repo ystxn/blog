@@ -14,17 +14,19 @@ const TagsPage = ({
 }) => (
   <Layout location={location} title={title}>
     <SEO
-      title="all tags"
+      title="Tags"
       keywords={[`blog`, `gatsby`, `javascript`, `react`]}
     />
     <div>
-      <h1>Tags</h1>
+      <h2>Tags</h2>
       <ul>
         {group.map(tag => (
           <li key={tag.fieldValue}>
             <Link to={`/tags/${tag.fieldValue.replace(/ /g, '-')}/`}>
-              {tag.fieldValue} ({tag.totalCount})
+              #{tag.fieldValue}
             </Link>
+            {` `}
+            ({tag.totalCount})
           </li>
         ))}
       </ul>

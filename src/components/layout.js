@@ -21,51 +21,20 @@ const NavBar = () => {
   )
 }
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  let header
-
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={{
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h3>
-    )
+const Layout = ({ title, children }) => {
+  const headerStyle = {
+    boxShadow: `none`,
+    textDecoration: `none`,
+    color: `inherit`,
   }
+  const header = (
+    <h2>
+      <Link style={headerStyle} to={`/`}>
+        {title}
+      </Link>
+    </h2>
+  )
+
   return (
     <div
       style={{
@@ -78,9 +47,7 @@ const Layout = ({ location, title, children }) => {
       <header>{header}</header>
       <NavBar />
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()} Yong Sheng Tan
-      </footer>
+      <footer>© {new Date().getFullYear()} Yong Sheng Tan</footer>
     </div>
   )
 }

@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'JBM';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/JetBrainsMono-Regular.eot'); /* IE9 Compat Modes */
+  src: url('fonts/JetBrainsMono-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/JetBrainsMono-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/JetBrainsMono-Regular.woff') format('woff'); /* Modern Browsers */
+}
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #ccc;
+  background: none;
+  font-family: 'JBM', monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+span.line-numbers-rows {
+  padding: 0.5em 0em 0.5em 1em
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  font-size: 0.9em;
+  margin: 0.5em 0;
+  overflow: auto;
+}
+
+div.gatsby-highlight > pre[class*="language-"].line-numbers {
+  padding: 0.5em 1em 0.5em 3.5em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #2d2d2d;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999;
+}
+
+.token.punctuation {
+  color: #ccc;
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+  color: #e2777a;
+}
+
+.token.function-name {
+  color: #6196cc;
+}
+
+.token.boolean,
+.token.number,
+.token.function {
+  color: #f08d49;
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+  color: #f8c555;
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+  color: #cc99cd;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+  color: #7ec699;
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+  color: #67cdcc;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.inserted {
+  color: green;
+}

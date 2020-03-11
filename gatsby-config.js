@@ -3,7 +3,7 @@ module.exports = {
     title: `Today YS Learned..`,
     author: {
       name: `Yong Sheng Tan`,
-      summary: `Lives in sunny Singapore; Works from anywhere.`,
+      summary: `from sunny singapore`,
     },
     description: `Daily tinkers with software, infra, coffee, running and photography`,
     siteUrl: `https://blog.yong.space`,
@@ -49,7 +49,12 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true
+            }
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],

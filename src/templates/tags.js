@@ -7,14 +7,12 @@ const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
   const siteTitle = data.site.siteMetadata.title
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+  const title = `#${tag} posts`
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title={tagHeader} />
-      <h1>{tagHeader}</h1>
+      <SEO title={title} />
+      <h2>{title} ({totalCount})</h2>
       <ul>
         {edges.map(({ node }) => {
           const { title, slug } = node.frontmatter

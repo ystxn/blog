@@ -4,12 +4,11 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
-require("prismjs/themes/prism-tomorrow.css")
+import "./blog-post.css"
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
-  const { previous, next } = pageContext
   const tags = post.frontmatter.tags || []
   const tagsList = tags.map(t => (
       <Link to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
@@ -19,51 +18,18 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
     <Layout location={location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        description={post.excerpt}
       />
       <article>
         <header>
           <h2>{post.frontmatter.title}</h2>
           <p>{post.frontmatter.date}</p>
-          <p>Tags: {tagsList}</p>
+          <p>{tagsList}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <footer>
-          <Bio />
-        </footer>
       </article>
-
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <hr style={{ marginBottom: rhythm(1) }} />
+      <Bio />
     </Layout>
   )
 }
@@ -84,7 +50,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        description
         tags
       }
     }

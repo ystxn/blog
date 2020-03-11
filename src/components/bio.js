@@ -40,7 +40,6 @@ const Bio = () => {
     <div
       style={{
         display: `flex`,
-        marginBottom: rhythm(2.5),
       }}
     >
       <Image
@@ -58,9 +57,9 @@ const Bio = () => {
       />
       <p>
         Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
+        <br />
         <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+          Follow him on Twitter
         </a>
       </p>
     </div>
