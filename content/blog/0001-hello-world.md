@@ -7,7 +7,7 @@ tags:
 - gatsby
 ---
 First post! Trying out the [gatsby](https://www.gatsbyjs.org/)
-static site generator to see what the fuss is all out.
+static site generator to see what the fuss is all about.
 
 ```javascript
 const BlogPostTemplate = ({ data, location }) => {
