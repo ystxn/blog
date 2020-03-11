@@ -7,9 +7,7 @@
 
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
-
-import { rhythm } from "../utils/typography"
+import profilePic from "../assets/profile-pic.jpg"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -29,6 +27,7 @@ const Bio = () => {
           }
           social {
             twitter
+            linkedin
           }
         }
       }
@@ -36,30 +35,30 @@ const Bio = () => {
   `)
 
   const { author, social } = data.site.siteMetadata
+  const profilePicStyle = {
+    width: "50px",
+    height: "50px",
+    borderRadius: "50%",
+    margin: "0.3em 0.8em 0.8em 0",
+    border: "skyblue 2px solid"
+  }
+
   return (
     <div
       style={{
         display: `flex`,
       }}
     >
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author.name}
-        style={{
-          marginRight: rhythm(1 / 2),
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
-      />
+      <img src={profilePic} alt={author.name} style={profilePicStyle} />
       <p>
         Written by <strong>{author.name}</strong> {author.summary}
         <br />
-        <a href={`https://twitter.com/${social.twitter}`}>
-          Follow him on Twitter
+        <a target={`_blank`} href={`https://twitter.com/${social.twitter}`}>
+          Twitter
+        </a>
+        &nbsp; &middot; &nbsp;
+        <a target={`_blank`} href={`https://linkedin.com/in/${social.linkedin}`}>
+          LinkedIn
         </a>
       </p>
     </div>

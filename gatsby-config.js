@@ -9,6 +9,7 @@ module.exports = {
     siteUrl: `https://blog.yong.space`,
     social: {
       twitter: `ystan_`,
+      linkedin: `tanys`
     },
   },
   plugins: [
