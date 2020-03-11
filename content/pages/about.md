@@ -1,15 +1,10 @@
 ---
 templateKey: page
-title: About Jakob
+title: About Yong Sheng
 date: 2019-05-15
 ---
 
-Jakob is a programmer!
-```javascript
-const entriesList = (entries) => {
-    const entriesLength = entries.length
-    return entries.map(entry => {
-        return `${entry.name} ${entriesLength}`
-    })
-}
-```
+Yong Sheng is a..
+* developer
+* coffee snob
+* hobby photographer

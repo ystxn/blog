@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Today I Learned..`,
+    title: `Today YS Learned..`,
     author: {
       name: `Yong Sheng Tan`,
       summary: `Lives in sunny Singapore; Works from anywhere.`,
@@ -68,13 +68,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Today YS Learned..`,
+        short_name: `YS Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/rocket.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -83,6 +83,12 @@ module.exports = {
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
+    },
+    {
+      resolve: 'gatsby-plugin-emoji-favicon',
+      options: {
+        emoji: '🚀'
+      }
     },
     `gatsby-plugin-offline`,
   ],
