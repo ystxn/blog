@@ -1,6 +1,6 @@
 ---
 templateKey: page
-title: About YS
+title: About
 date: 2019-05-15
 ---
 

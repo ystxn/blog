@@ -26,11 +26,8 @@ const SEO = ({ description, lang, meta, title }) => {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const excludeFromTitle = [ 'Home', '' ]
-  let displayTitle = 'YS Blog'
-  if (excludeFromTitle.indexOf(title) === -1) {
-    displayTitle = `${displayTitle}: ${title}`
-  }
+  const pageTitleSuffix = title === 'Home' ? '' : ` ${title}`
+  const displayTitle = `${site.siteMetadata.title}${pageTitleSuffix}`
 
   return (
     <Helmet
