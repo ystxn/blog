@@ -1,5 +1,9 @@
 * { color: #bbbbbb }
-html { background-color: #1e1e1e }
+html {
+    background-color: #1e1e1e;
+    font-family: Merriweather, Georgia, serif;
+    line-height: 1.65
+}
 a {
     color: lightseagreen;
     text-decoration: none;
@@ -9,26 +13,46 @@ a:hover {
     color: lightskyblue;
     border-bottom: lightskyblue 1px dashed;
 }
-h2, h3 { margin-top: 0 }
-hr { margin: 1rem 0; border-top: rgba(230, 230, 230, 0.6) 1px dashed; }
-ul { margin-left: 2rem }
+h2, h3 { margin-top: 0; font-weight: 900 }
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.1;
+    margin-bottom: 0;
+}
+p { padding: 0; margin: 0 0 0.5rem }
+hr {
+    margin: 1rem 0;
+    border: none;
+    border-top: rgba(230, 230, 230, 0.6) 1px dashed;
+}
+ul { margin: 0 0 0 2rem; padding: 0 }
+li { margin: 0.1rem 0 0.2rem 0 }
 @media only screen and (max-width: 480px) {
     nav.main-nav ol { margin-left: 0 }
 }
-nav.main-nav ol { list-style: none }
+div.envelope {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 42rem;
+    padding: 1rem 2.6rem;
+}
+div.envelope main {
+    margin-top: 2.5rem;
+}
+nav.main-nav ol { list-style: none; padding: 0 }
 nav.main-nav li { display: inline-block }
 nav.main-nav li a {
     background: lightseagreen;
-    padding: 0.4rem 0.8rem;
+    padding: 0.6rem 0.8rem;
     margin-right: 1.6rem;
     border-radius: 0.5rem;
 }
 .main-header a { color: #cccccc }
 .main-header a:hover { color: #dddddd; border: none }
 .main-header h2 { margin: 0  }
-.main-header h5 { color: #999999; font-weight: 400; margin: 0.5rem 0 0 0 }
-.main-nav { margin-top: 1.5rem }
-.main-nav li a { color: #333; font-family: 'JBM' }
+.main-header h5 { color: #999999; font-weight: 400; margin: 0 }
+.main-nav { margin-top: 1.2rem }
+.main-nav li a { color: #222; font-family: "JetBrains Mono", monospace; font-weight: 600 }
 .main-nav li a:hover { color: black; background: lightskyblue; border: none }
 footer { margin-top: 3rem }
-footer div p { color: #888 }
+footer div p { margin: 0; color: #888 }

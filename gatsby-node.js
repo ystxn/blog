@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const tagTemplate = path.resolve("src/templates/tags.js")
   tags.filter((elem, pos, arr) => {
-    return arr.indexOf(elem) == pos
+    return arr.indexOf(elem) === pos
   }).forEach(tag => {
     createPage({
       path: `/tags/${tag.replace(/ /g, '-')}/`,

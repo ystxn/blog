@@ -1,17 +1,8 @@
-@font-face {
-  font-family: 'JBM';
-  font-style: normal;
-  font-weight: 400;
-  src: url('fonts/JetBrainsMono-Regular.eot'); /* IE9 Compat Modes */
-  src: url('fonts/JetBrainsMono-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/JetBrainsMono-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/JetBrainsMono-Regular.woff') format('woff'); /* Modern Browsers */
-}
 code[class*="language-"],
 pre[class*="language-"] {
   color: #ccc;
   background: none;
-  font-family: 'JBM', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1em;
   text-align: left;
   white-space: pre;
@@ -19,11 +10,9 @@ pre[class*="language-"] {
   word-break: normal;
   word-wrap: normal;
   line-height: 1.5;
-
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;

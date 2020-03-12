@@ -39,7 +39,7 @@ const Bio = () => {
     width: "50px",
     height: "50px",
     borderRadius: "50%",
-    margin: "0.3em 0.8em 0.8em 0",
+    margin: "0.1em 0.8em 0.8em 0",
     border: "lightseagreen 2px solid"
   }
 
