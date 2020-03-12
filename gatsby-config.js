@@ -83,6 +83,7 @@ module.exports = {
         icon: `content/assets/rocket.png`,
       },
     },
+    `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
   ],

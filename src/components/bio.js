@@ -8,6 +8,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import profilePic from "../assets/profile-pic.jpg"
+import "./layout.scss"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -35,23 +36,12 @@ const Bio = () => {
   `)
 
   const { author, social } = data.site.siteMetadata
-  const profilePicStyle = {
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
-    margin: "0.1em 0.8em 0.8em 0",
-    border: "lightseagreen 2px solid"
-  }
 
   return (
     <>
       <hr />
-      <div
-        style={{
-          display: `flex`,
-        }}
-      >
-        <img src={profilePic} alt={author.name} style={profilePicStyle} />
+      <div style={{ display: `flex` }}>
+        <img src={profilePic} alt={author.name} className='profile-pic' />
         <p>
           Written by <strong>{author.name}</strong> {author.summary}
           <br />

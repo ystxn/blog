@@ -1,7 +1,7 @@
 import React from "react"
 import Bio from "../components/bio"
 import { Link } from "gatsby"
-import "./layout.css"
+import "./layout.scss"
 
 const NavBar = () =>
     <nav className='main-nav'>
