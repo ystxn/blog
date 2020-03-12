@@ -3,7 +3,7 @@ module.exports = {
     title: `Today YS Learned..`,
     author: {
       name: `Yong Sheng Tan`,
-      summary: `from sunny Singapore. All thoughts, opinions, code and other media are expressed here on a personal basis and do not represent any entity or person other than himself.`,
+      summary: `from sunny Singapore. All thoughts, opinions, code and other media are expressed here in a personal capacity and do not represent any other entities or persons.`,
     },
     description: `daily tinkers with software, infrastructure, coffee, running and photography`,
     siteUrl: `https://blog.yong.space`,
