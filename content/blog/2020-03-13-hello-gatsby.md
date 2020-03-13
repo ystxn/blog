@@ -4,7 +4,6 @@ slug: hello-gatsby
 title: Building a Gatsby Blog
 tags:
 - gatsby
-- react
 ---
 First post! Trying out the [Gatsby](https://www.gatsbyjs.org/) static site generator to
 see what the fuss is all about (and building out this site at the same time).
