@@ -56,6 +56,12 @@ module.exports = {
               showLineNumbers: true
             }
           },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: `_blank`
+            }
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
@@ -63,14 +69,12 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    /*
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-76500462-2`,
       },
     },
-    */
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
