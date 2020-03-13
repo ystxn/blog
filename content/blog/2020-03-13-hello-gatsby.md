@@ -14,7 +14,8 @@ see what the fuss is all about (and building out this site at the same time).
 It's essentially a dynamic site at develop-time transformed into a static site during the
 build process. There are a whole bunch of SSGs out there and Gatsby seems to be quite
 popular so I'm giving it a shot. Gatsby allows you to back the site from various *actual*
-backends like drupal but I'm keeping it static by writing posts in markdown files.
+backends like wordpress but I'm keeping it static by writing posts in regular markdown
+files.
 
 ## In a nutshell
 1. Install the Gatsby CLI
@@ -79,7 +80,7 @@ If you haven't already heard of [zeit.co](https://zeit.co)'s service `now`, it's
 neat service where you sign up for an account, install their `now` CLI, then go into any
 directory and type `now`, which instantly uploads the contents of that directory. It then
 gives you a website URL where your contents are hosted on, including a SSL/TLS
-certificated managed by Let's Encrypt. You can replace the contents of that website at any
+certificate managed by Let's Encrypt. You can replace the contents of that website at any
 time by firing `now` again.
 
 ## Making deployments easier
