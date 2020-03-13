@@ -40,7 +40,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "git clone --no-checkout https://github.com/ystan-/blog git && cp -r git/.git . && GATSBY_TELEMETRY_DISABLED=1 gatsby build && rm -rf git",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

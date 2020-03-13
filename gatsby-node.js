@@ -79,13 +79,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: createFilePath({ node, getNode }),
     })
 
-    const gitAuthorTime = execSync(
-      `git log -1 --pretty=format:%aI ${node.fileAbsolutePath}`
-    ).toString().replace(/\+08:00/g, 'Z')
-    actions.createNodeField({
-      name: `gitAuthorTime`,
-      node,
-      value: gitAuthorTime,
-    })
+    if (node.frontmatter.templateKey === 'blog-post') {
+      const relativePath = `content/blog/${node.fields.slug.replace(/\//g,'')}.md`
+      const gitAuthorTime = execSync(
+        `git log -1 --pretty=format:%aI ${relativePath}`
+      ).toString().replace(/\+08:00/g, 'Z')
+      actions.createNodeField({
+        name: `gitAuthorTime`,
+        node,
+        value: gitAuthorTime,
+      })
+    }
   }
 }
