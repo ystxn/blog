@@ -2,7 +2,6 @@
 templateKey: blog-post
 slug: hello-gatsby
 title: Building a Gatsby Blog
-date: "2020-03-12T21:37"
 tags:
 - gatsby
 - react
@@ -33,3 +32,6 @@ project set up on [zeit.co](https://zeit.co). Every time a commit is
 pushed to master branch (or any other of your choice), zeit launches
 a build and deploys the site automatically. Custom domains and SSL/TLS
 (via Let's Encrypt) are handled for you.
+
+# Let's get started
+xx

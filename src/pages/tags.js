@@ -22,7 +22,7 @@ const TagsPage = ({
       <ul>
         {group.map(tag => (
           <li key={tag.fieldValue}>
-            <Link to={`/tags/${tag.fieldValue.replace(/ /g, '-')}/`}>
+            <Link key={tag.fieldValue} to={`/tags/${tag.fieldValue.replace(/ /g, '-')}/`}>
               #{tag.fieldValue}
             </Link>
             {` `}

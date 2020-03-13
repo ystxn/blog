@@ -5,11 +5,12 @@ import SEO from "../components/seo"
 import "./blog-post.scss"
 
 const BlogPostTemplate = ({ data, location }) => {
+  const { gitAuthorTime } = data.markdownRemark.fields
   const post = data.markdownRemark
   const { title, description } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
   const tagsList = tags.map(t => (
-      <Link to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
+      <Link key={t} to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
   )).reduce((prev, curr) => [prev, ', ', curr])
 
   return (
@@ -21,7 +22,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <article>
         <header>
           <h2>{post.frontmatter.title}</h2>
-          <p>{post.frontmatter.date}</p>
+          <p>{gitAuthorTime}</p>
           <p>{tagsList}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -44,9 +45,11 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        gitAuthorTime(formatString: "MMM Do YYYY, h:mma")
+      }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
         tags
       }
     }

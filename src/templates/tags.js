@@ -18,7 +18,7 @@ const Tags = ({ pageContext, data, location }) => {
           const { title, slug } = node.frontmatter
           return (
             <li key={slug}>
-              <Link to={slug}>{title}</Link>
+              <Link to={`/${slug}`}>{title}</Link>
             </li>
           )
         })}
@@ -38,9 +38,8 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
+      sort: { fields: [fields___slug], order: DESC }
     ) {
       totalCount
       edges {

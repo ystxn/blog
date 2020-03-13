@@ -1,7 +1,6 @@
 ---
 templateKey: page
 title: About
-date: 2019-05-15
 ---
 
 Yong Sheng is a..

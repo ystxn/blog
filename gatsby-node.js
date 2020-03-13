@@ -1,15 +1,13 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { execSync } = require('child_process')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const result = await graphql(
     `
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
           edges {
@@ -74,14 +72,20 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
+    actions.createNodeField({
       name: `slug`,
       node,
-      value,
+      value: createFilePath({ node, getNode }),
+    })
+
+    const gitAuthorTime = execSync(
+      `git log -1 --pretty=format:%aI ${node.fileAbsolutePath}`
+    ).toString().replace(/\+08:00/g, 'Z')
+    actions.createNodeField({
+      name: `gitAuthorTime`,
+      node,
+      value: gitAuthorTime,
     })
   }
 }
