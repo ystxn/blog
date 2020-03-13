@@ -20,11 +20,13 @@ article {
         }
         ul { margin: 0.5rem 0 1rem 2rem }
         ol li { padding-left: 0.6rem }
-        p > code[class*="language-"] {
-            font-size: 0.9em;
-            background: darken($themePrimary, 20%);
-            color: lighten($text, 10%);
-            padding: 0.15em 0.25em
+        p, li {
+            & > code[class*="language-"] {
+                font-size: 0.9em;
+                background: darken($themePrimary, 20%);
+                color: lighten($text, 10%);
+                padding: 0.15em 0.25em
+            }
         }
     }
 }
