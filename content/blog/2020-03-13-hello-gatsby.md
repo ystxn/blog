@@ -9,6 +9,8 @@ tags:
 First post! Trying out the [Gatsby](https://www.gatsbyjs.org/) static site generator to
 see what the fuss is all about (and building out this site at the same time).
 
+![alt text](../assets/mando-blog-meme.jpg "This is the way.")
+
 ## What is a static site generator?
 It's essentially a dynamic site at develop-time transformed into a static site during the
 build process. There are a whole bunch of SSGs out there and Gatsby seems to be quite

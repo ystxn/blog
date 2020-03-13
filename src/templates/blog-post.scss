@@ -16,7 +16,7 @@ article {
         h6 { font-size: 0.9em }
         p {
             margin: 0.5rem 0 0.5rem 0;
-            font-weight: 100;
+            font-weight: 100
         }
         ul { margin: 0.5rem 0 1rem 2rem }
         ol li { padding-left: 0.6rem }
@@ -28,5 +28,6 @@ article {
                 padding: 0.15em 0.25em
             }
         }
+        span.gatsby-resp-image-wrapper { margin: 1.5em 0 }
     }
 }
