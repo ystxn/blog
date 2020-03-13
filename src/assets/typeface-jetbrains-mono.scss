@@ -1,0 +1,87 @@
+$baseFont: "JetBrains Mono";
+$baseFontWord: "JetBrainsMono";
+$basePath: "./fonts/JetBrainsMono/JetBrainsMono";
+
+@font-face {
+  font-family: $baseFont;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} Regular"), local("#{$baseFontWord}-Regular"),
+    url("#{$basePath}-Regular.woff2") format("woff2"),
+    url("#{$basePath}-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: $baseFont;
+  font-style: italic;
+  font-weight: 400;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} Italic"), local("#{$baseFontWord}-Italic"),
+    url("#{$basePath}-Italic.woff2") format("woff2"),
+    url("#{$basePath}-Italic.woff")  format("woff");
+}
+
+@font-face {
+  font-family: $baseFont;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} Bold"), local("#{$baseFontWord}-Bold"),
+    url("#{$basePath}-Bold.woff2") format("woff2"),
+    url("#{$basePath}-Bold.woff")  format("woff");
+}
+@font-face {
+  font-family: $baseFont;
+  font-style: italic;
+  font-weight: 700;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} Bold Italic"), local("#{$baseFontWord}-BoldItalic"),
+    url("#{$basePath}-Bold-Italic.woff2") format("woff2"),
+    url("#{$basePath}-Bold-Italic.woff")  format("woff");
+}
+@font-face {
+  font-family: "#{$baseFont} Medium";
+  font-style: italic;
+  font-weight: 500;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} Medium Italic"), local("#{$baseFontWord}-MediumItalic"),
+    url("#{$basePath}-Medium-Italic.woff2") format("woff2"),
+    url("#{$basePath}-Medium-Italic.woff")  format("woff");
+}
+@font-face {
+  font-family: "#{$baseFont} Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} Medium"), local("#{$baseFontWord}-Medium"),
+    url("#{$basePath}-Medium.woff2") format("woff2"),
+    url("#{$basePath}-Medium.woff")  format("woff");
+}
+
+
+@font-face {
+  font-family: "#{$baseFont} ExtraBold";
+  font-style: italic;
+  font-weight: 800;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} ExtraBold Italic"), local("#{$baseFontWord}-ExtraBoldItalic"),
+    url("#{$basePath}-ExtraBold-Italic.woff2") format("woff2"),
+    url("#{$basePath}-ExtraBold-Italic.woff")  format("woff");
+}
+@font-face {
+  font-family: "#{$baseFont} ExtraBold";
+  font-style: normal;
+  font-weight: 800;
+  font-feature-settings: "calt" 1, "zero" 1;
+  font-display: swap;
+  src: local("#{$baseFont} ExtraBold"), local("#{$baseFontWord}-ExtraBold"),
+    url("#{$basePath}-ExtraBold.woff2") format("woff2"),
+    url("#{$basePath}-ExtraBold.woff")  format("woff");
+}

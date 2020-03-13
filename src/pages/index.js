@@ -60,7 +60,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          excerpt
+          excerpt(pruneLength: 280)
           fields {
             slug
             gitAuthorTime(formatString: "MMM Do YYYY, h:mma")

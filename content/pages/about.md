@@ -4,7 +4,11 @@ title: About
 ---
 
 Yong Sheng is a..
-* developer
+* developer advocate
+* tech tinkerer
+* data hoarder
 * coffee snob
 * hobby photographer
 * running enthusiast
+
+not in any particular order.

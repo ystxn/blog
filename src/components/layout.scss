@@ -1,9 +1,10 @@
-$themePrimary: lightseagreen;
-$themeSecondary: lightskyblue;
-$siteTitle: #ddd;
-$text: #ccc;
+@import "../assets/theme.scss";
 
-* { color: $text }
+* {
+  color: $text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 html {
   background-color: #1e1e1e;
   font-family: Merriweather, Georgia, serif;

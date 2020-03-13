@@ -1,8 +1,30 @@
+@import "../assets/theme.scss";
+
 article {
     margin-bottom: 2rem;
     header h2 { margin-bottom: 0 }
-    section p {
-        margin-bottom: 0.5rem;
-        font-weight: 100;
+    section {
+        h1, h2, h3, h4, h5, h6 {
+            margin: 2rem 0 0.1rem 0; font-weight: 500;
+            color: $themeSecondary
+        }
+        h1 { font-size: 1.4em }
+        h2 { font-size: 1.2em }
+        h3 { font-size: 1.0em }
+        h4 { font-size: 1.1em }
+        h5 { font-size: 1.0em }
+        h6 { font-size: 0.9em }
+        p {
+            margin: 0.5rem 0 0.5rem 0;
+            font-weight: 100;
+        }
+        ul { margin: 0.5rem 0 1rem 2rem }
+        ol li { padding-left: 0.6rem }
+        p > code[class*="language-"] {
+            font-size: 0.9em;
+            background: darken($themePrimary, 20%);
+            color: lighten($text, 10%);
+            padding: 0.15em 0.25em
+        }
     }
 }
