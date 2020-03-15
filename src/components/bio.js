@@ -36,6 +36,7 @@ const Bio = () => {
   `)
 
   const { author, social } = data.site.siteMetadata
+  const rel = `nofollow noopener noreferrer`
 
   return (
     <>
@@ -45,11 +46,11 @@ const Bio = () => {
         <p>
           Written by <strong>{author.name}</strong> {author.summary}
           <br />
-          <a target={`_blank`} href={`https://twitter.com/${social.twitter}`}>
+          <a target={`_blank`} rel={rel} href={`//twitter.com/${social.twitter}`}>
             Twitter
           </a>
           &nbsp; &middot; &nbsp;
-          <a target={`_blank`} href={`https://linkedin.com/in/${social.linkedin}`}>
+          <a target={`_blank`} rel={rel} href={`//linkedin.com/in/${social.linkedin}`}>
             LinkedIn
           </a>
         </p>
