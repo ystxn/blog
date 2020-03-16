@@ -12,6 +12,8 @@ const BlogIndex = ({ data, location }) => {
       <SEO title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
+        const date = node.fields.gitAuthorTime === 'Invalid date' ?
+          '<Unpublished Post />' : node.fields.gitAuthorTime
         const tags = node.frontmatter.tags || []
         const tagsList = tags
           .map(t => <Link key={t} to={`/tags/${t.replace(/ /g, "-")}`}>#{t}</Link>)
@@ -27,7 +29,7 @@ const BlogIndex = ({ data, location }) => {
                   {title}
                 </Link>
               </h3>
-              <small>{node.fields.gitAuthorTime}</small>
+              <small>{date}</small>
               <p>{tagsList}</p>
             </header>
             <section>

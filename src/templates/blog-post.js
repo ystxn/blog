@@ -6,6 +6,7 @@ import "./blog-post.scss"
 
 const BlogPostTemplate = ({ data, location }) => {
   const { gitAuthorTime } = data.markdownRemark.fields
+  const date = gitAuthorTime === 'Invalid date' ? '<Unpublished Post />' : gitAuthorTime
   const post = data.markdownRemark
   const { title, description } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
@@ -22,7 +23,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <article>
         <header>
           <h2>{post.frontmatter.title}</h2>
-          <p>{gitAuthorTime}</p>
+          <p>{date}</p>
           <p>{tagsList}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
