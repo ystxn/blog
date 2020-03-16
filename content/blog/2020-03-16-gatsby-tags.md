@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 slug: gatsby-tags
-title: 'Add #hashtagging to Gatsby'
+title: 'Adding #hashtagging to Gatsby'
 tags:
 - gatsby
 - react
