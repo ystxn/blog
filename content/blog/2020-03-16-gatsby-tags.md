@@ -1,26 +1,28 @@
 ---
 templateKey: blog-post
 slug: gatsby-tags
-title: 'Add #hashtagging to a Gatsby Blog'
+title: 'Add #hashtagging to Gatsby'
 tags:
 - gatsby
 - react
 - hashtag
 ---
 Following the [previous post](/hello-gatsby) on bootstrapping a bare basics Gatsby blog,
-let's get into adding hashtag functionality to make it feel less static. You can add any
-metadata you like to the markdown header bits of your posts and query them using GraphQL
-to create a sense of data-driven dynamics. Let's look at how you can #hashtag-enable your
-Gatsby blog.
+let's explore adding hashtag functionality to make it feel less static. You can add any
+metadata you like to the markdown header bits of your posts and query them later using
+GraphQL to create a sense of data-driven dynamics. In this post, we'll look at using this
+to [#hashtag](/tags/hashtag)-enable your blog.
 
 ![alt text](../assets/hashtag.jpg "Hashtags. Photo by Jan Baborák on Unsplash.")
 
 ## Step 1. Add tags to individual markdown posts
 ```markdown
-tags:
-- gatsby
-- react
-- hashtag
+title: 'Add #hashtagging to Gatsby'
+slug: gatsby-tags
+tags:     // highlight-line
+- gatsby  // highlight-line
+- react   // highlight-line
+- hashtag // highlight-line
 ```
 
 ## Step 2. Revise the templates to display the list of tags on each post
