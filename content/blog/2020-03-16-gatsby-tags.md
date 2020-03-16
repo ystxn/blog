@@ -1,27 +1,29 @@
 ---
 templateKey: blog-post
 slug: gatsby-tags
-title: 'Addings Tags to a Gatsby Blog'
+title: 'Add #hashtagging to a Gatsby Blog'
 tags:
 - gatsby
 - react
-- tags
+- hashtag
 ---
 Following the [previous post](/hello-gatsby) on bootstrapping a bare basics Gatsby blog,
-let's get into adding tagging functionality to make it feel less static. You can add any
+let's get into adding hashtag functionality to make it feel less static. You can add any
 metadata you like to the markdown header bits of your posts and query them using GraphQL
-to create a sense of data-driven dynamics. For adding tag functionality there are a number
-of parts to it:
+to create a sense of data-driven dynamics. Let's look at how you can #hashtag-enable your
+Gatsby blog.
 
-## 1. Add tags to individual markdown posts
+![alt text](../assets/hashtag.jpg "Hashtags. Photo by Jan Baborák on Unsplash.")
+
+## Step 1. Add tags to individual markdown posts
 ```markdown
 tags:
 - gatsby
 - react
-- tags
+- hashtag
 ```
 
-## 2. Revising the templates to display the list of tags on each post
+## Step 2. Revise the templates to display the list of tags on each post
 * The files are `templates/blog-post.js` and optionally, `pages/index.js`
 * First, extract the `tags` field in the GraphQL query
 ```javascript
@@ -54,7 +56,7 @@ tags:
     </article>
 ```
 
-## 3. Adding a page to display the unique list of tags and the number of posts each
+## Step 3. Add a tags listing page to display all tags and their number of posts
 * Create this file at `pages/tags.js`
 ```javascript
     import React from "react"
@@ -105,7 +107,7 @@ tags:
     `
 ```
 
-## 4. Define what the per-tag page looks like
+## Step 4. Define what the per-tag post listing page looks like
 * Create this file at `templates/tags.js`
 ```javascript
     import React from "react"
@@ -160,7 +162,7 @@ tags:
     `
 ```
 
-## 5. Generate the per-tag pages to display all posts under that tag
+## 5. Generate the per-tag pages to display all posts under each tag
 * Edit `gatsby-node.js`
 * First, collate the tags in the existing logic traversing pages
 ```javascript
