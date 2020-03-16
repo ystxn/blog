@@ -96,7 +96,6 @@ tags:     // highlight-line
             site {
                 siteMetadata {
                     title
-                    description
                 }
             }
             allMarkdownRemark(limit: 2000) {
@@ -141,7 +140,6 @@ tags:     // highlight-line
             site {
                 siteMetadata {
                     title
-                    description
                 }
             }
             allMarkdownRemark(
@@ -191,7 +189,7 @@ tags:     // highlight-line
 ```
 
 ## Let there be #tags
-Your blog is now organised by tags while remaining blazing fast since Gatsby pre-generates
+Your blog is now organised by tags while remaining blazing fast. Gatsby pre-generates
 all pages during the build process so viewing the tags list page or listing posts per tag
 load instantly. Note that this approach relies on having a single tags list on each post
 defined in the markdown header bits. Using dynamic #tags in content involves a bit more
