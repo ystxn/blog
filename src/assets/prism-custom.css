@@ -18,6 +18,14 @@ pre[class*="language-"] {
   -ms-hyphens: none;
   hyphens: none;
 }
+
+pre[class*="language-"] > code[class*="language-"] {
+  display: block;
+  min-width: 100%;
+  width: fit-content;
+  padding-right: 0.8rem;
+}
+
 span.line-numbers-rows {
   padding: 0.5em 0em 0.5em 1em
 }
@@ -120,5 +128,8 @@ pre[class*="language-"] {
 }
 .gatsby-highlight-code-line {
   display: block;
-  background: rgba(16, 92, 87, 0.7)
+  background: rgba(16, 92, 87, 0.7);
+  padding-left: 1rem;
+  margin-left: -1rem;
+  width: calc(100% + 0.8rem);
 }
