@@ -30,7 +30,10 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: {
+        fields: { draft: { eq: false } }
+        frontmatter: { tags: { in: [$tag] } }
+      }
       sort: { fields: [fields___slug], order: DESC }
     ) {
       totalCount
