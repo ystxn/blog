@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Today YS Learned..`,
+    title: `YS Learns..`,
     author: {
       name: `Yong Sheng Tan`,
       summary: `from sunny Singapore. All thoughts, opinions, code and other media are expressed here in a personal capacity and do not represent any other entities or persons.`,
@@ -78,8 +78,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Today YS Learned..`,
-        short_name: `YS Learned..`,
+        name: `YS Learns..`,
+        short_name: `YS Learns..`,
         start_url: `/`,
         background_color: `#1e1e1e`,
         theme_color: `lightseagreen`,
