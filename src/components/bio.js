@@ -13,47 +13,47 @@ import "./layout.scss"
 const Bio = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
       site {
         siteMetadata {
           author {
             name
             summary
           }
+          disclaimer
           social {
             twitter
-            linkedin
+            gitHub
+            linkedIn
           }
         }
       }
     }
   `)
 
-  const { author, social } = data.site.siteMetadata
-  const rel = `nofollow noopener noreferrer`
+  const { author, disclaimer, social } = data.site.siteMetadata
+  const socialLinks = Object.keys(social)
+    .filter(platform => social[platform])
+    .map(platform => {
+      const path = platform === 'linkedIn' ? 'in/' : ''
+      return (
+        <a target={`_blank`} rel={`nofollow noopener noreferrer`}
+          href={`//${platform}.com/${path}${social[platform]}`}>
+          {platform.replace(/^\w/, c => c.toUpperCase())}
+        </a>
+      )
+    })
+    .reduce((prev, curr) => [prev, <>&nbsp; &middot; &nbsp;</>, curr])
 
   return (
     <>
       <hr />
       <div style={{ display: `flex` }}>
         <img src={profilePic} alt={author.name} className='profile-pic' />
-        <p>
-          Written by <strong>{author.name}</strong> {author.summary}
-          <br />
-          <a target={`_blank`} rel={rel} href={`//twitter.com/${social.twitter}`}>
-            Twitter
-          </a>
-          &nbsp; &middot; &nbsp;
-          <a target={`_blank`} rel={rel} href={`//linkedin.com/in/${social.linkedin}`}>
-            LinkedIn
-          </a>
-        </p>
+        <div>
+          <p>Written by <strong>{author.name}</strong> {author.summary}</p>
+          <p>{socialLinks}</p>
+          <p><small><em>{disclaimer}</em></small></p>
+        </div>
       </div>
       <hr />
     </>

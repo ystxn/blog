@@ -3,13 +3,15 @@ module.exports = {
     title: `YS Learns..`,
     author: {
       name: `Yong Sheng Tan`,
-      summary: `from sunny Singapore. All thoughts, opinions, code and other media are expressed here in a personal capacity and do not represent any other entities or persons.`,
+      summary: `from sunny Singapore`,
     },
     description: `daily tinkers with software, infrastructure, coffee, running and photography`,
+    disclaimer: `All thoughts, opinions, code and other media are expressed here in a personal capacity and do not represent any other entities or persons`,
     siteUrl: `https://blog.yong.space`,
     social: {
       twitter: `ystan_`,
-      linkedin: `tanys`
+      gitHub: `ystan-`,
+      linkedIn: `tanys`
     },
   },
   plugins: [
