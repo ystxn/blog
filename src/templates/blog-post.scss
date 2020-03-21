@@ -32,5 +32,13 @@ article {
         div.gatsby-highlight {
             margin-bottom: 1.5rem;
         }
+        a.header-anchor {
+            @media only screen and (max-width: 512px) {
+                display: none
+            }
+            &.before { padding: 0.15rem 0.4rem 0 0 }
+            &:hover { border: none }
+            svg { fill: darken($themeSecondary, 20%) }
+        }
     }
 }
