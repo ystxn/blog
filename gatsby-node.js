@@ -54,11 +54,11 @@ exports.createPages = async ({ graphql, actions }) => {
     if (post.node.frontmatter.tags && post.node.frontmatter.draft === null) {
       tags = tags.concat(post.node.frontmatter.tags)
     }
-
+    const template = post.node.frontmatter.templateKey || 'blog-post'
     createPage({
       path: post.node.frontmatter.slug || post.node.fields.slug,
       component: path.resolve(
-        `./src/templates/${post.node.frontmatter.templateKey}.js`
+        `./src/templates/${template}.js`
       ),
       context: {
         slug: post.node.fields.slug,
@@ -80,29 +80,33 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  if (node.internal.type === `MarkdownRemark`) {
-    actions.createNodeField({
-      name: `slug`,
-      node,
-      value: createFilePath({ node, getNode }),
-    })
+  if (node.internal.type !== `MarkdownRemark`) {
+    return
+  }
 
-    actions.createNodeField({
-      name: `draft`,
-      node,
-      value: node.frontmatter.draft || false,
-    })
+  actions.createNodeField({
+    name: `slug`,
+    node,
+    value: createFilePath({ node, getNode }),
+  })
 
-    if (node.frontmatter.templateKey === 'blog-post') {
-      const relativePath = `content/blog/${node.fields.slug.replace(/\//g,'')}.md`
-      const gitAuthorTime = execSync(
-        `git log -1 --pretty=format:%aI ${relativePath}`
-      ).toString().replace(/\+08:00/g, 'Z')
-      actions.createNodeField({
-        name: `gitAuthorTime`,
-        node,
-        value: gitAuthorTime,
-      })
-    }
+  actions.createNodeField({
+    name: `draft`,
+    node,
+    value: node.frontmatter.draft || false,
+  })
+
+  const { templateKey: template } = node.frontmatter
+  if (!template || template === 'blog-post') {
+    const fileName = node.fields.slug.replace(/\//g, '')
+    const relativePath = `content/blog/${fileName}.md`
+    const gitTime = execSync(
+      `git log -1 --pretty=format:%aI ${relativePath}`
+    ).toString().replace(/\+08:00/g, 'Z')
+    actions.createNodeField({
+      name: `gitTime`,
+      node,
+      value: gitTime,
+    })
   }
 }

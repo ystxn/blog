@@ -5,8 +5,8 @@ import SEO from "../components/seo"
 import "./blog-post.scss"
 
 const BlogPostTemplate = ({ data, location }) => {
-  const { gitAuthorTime } = data.markdownRemark.fields
-  const date = gitAuthorTime === 'Invalid date' ? '<Unpublished Post />' : gitAuthorTime
+  const { gitTime } = data.markdownRemark.fields
+  const date = gitTime === 'Invalid date' ? '<Unpublished Post />' : gitTime
   const post = data.markdownRemark
   const { title, description } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
@@ -47,7 +47,7 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 160)
       html
       fields {
-        gitAuthorTime(formatString: "MMM Do YYYY, h:mma")
+        gitTime(formatString: "MMM Do YYYY, h:mma")
       }
       frontmatter {
         title

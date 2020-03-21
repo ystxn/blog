@@ -12,8 +12,8 @@ const BlogIndex = ({ data, location }) => {
       <SEO title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
-        const date = node.fields.gitAuthorTime === 'Invalid date' ?
-          '<Unpublished Post />' : node.fields.gitAuthorTime
+        const date = node.fields.gitTime === 'Invalid date' ?
+          '<Unpublished Post />' : node.fields.gitTime
         const tags = node.frontmatter.tags || []
         const tagsList = tags
           .map(t => <Link key={t} to={`/tags/${t.replace(/ /g, "-")}`}>#{t}</Link>)
@@ -59,7 +59,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       filter: {
         fields: { draft: { eq: false } }
-        frontmatter: { templateKey: { eq: "blog-post" } }
+        frontmatter: { templateKey: { ne: "page" } }
       }
       sort: { fields: [fields___slug], order: DESC }
     ) {
@@ -68,7 +68,7 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 280)
           fields {
             slug
-            gitAuthorTime(formatString: "MMM Do YYYY, h:mma")
+            gitTime(formatString: "MMM Do YYYY, h:mma")
           }
           frontmatter {
             slug
