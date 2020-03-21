@@ -31,18 +31,19 @@ const Bio = () => {
   `)
 
   const { author, disclaimer, social } = data.site.siteMetadata
+  const DotSpace = (key) => <span key={key}>&nbsp; &middot; &nbsp;</span>
   const socialLinks = Object.keys(social)
     .filter(platform => social[platform])
     .map(platform => {
       const path = platform === 'linkedIn' ? 'in/' : ''
       return (
-        <a target={`_blank`} rel={`nofollow noopener noreferrer`}
+        <a key={platform} target={`_blank`} rel={`nofollow noopener noreferrer`}
           href={`//${platform}.com/${path}${social[platform]}`}>
           {platform.replace(/^\w/, c => c.toUpperCase())}
         </a>
       )
     })
-    .reduce((prev, curr) => [prev, <>&nbsp; &middot; &nbsp;</>, curr])
+    .reduce((prev, curr) => [prev, <DotSpace key={curr} />, curr])
 
   return (
     <>
