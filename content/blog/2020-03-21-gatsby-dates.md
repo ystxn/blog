@@ -4,6 +4,7 @@ title: Using Dates in Gatsby
 tags:
 - gatsby
 - date
+- git
 ---
 With [Pi Day](https://www.piday.org) having just past last week, we're here to talk about dates in Gatsby.
 ![alt text](../assets/pi-day.jpg "Pi Day. Errr day.")
@@ -45,7 +46,7 @@ import moment from "moment" // highlight-line
 
 const BlogPostTemplate = ({ data, location }) => {
   ...
-  const { title, date } = data.markdownRemark.frontmatter // highlight-line
+  const { title, date, tags } = data.markdownRemark.frontmatter // highlight-line
   const { html } = data.markdownRemark
 
   return (
@@ -110,16 +111,15 @@ query BlogPostBySlug($slug: String!) {
   }
 }
 ```
-Rendering is the same as in the previous example, again just substituting `fields` from
-`frontmatter`.
+Rendering is the same as in the previous example, again substituting `frontmatter` for `fields`.
 ```javascript
 const { gitTime } = data.markdownRemark.fields
 ```
 
-I have two issues with this approach. First is that when deploying via zeit, the `.git`
-directory is not present in the deployment directory, hence the `git` command cannot pull
-history. You can work around this by changing your `build` command in your `package.json`
-to the following:
+I faced two issues with this approach that might not apply to everyone. First was that
+when deploying via zeit, the `.git` directory is not present in the deployment directory,
+hence the `git` command cannot pull history. You can work around this by changing your
+`build` command in your `package.json` to the following:
 ```bash
 git clone --no-checkout https://github.com/... x && cp -r x/.git . && gatsby build
 ```
@@ -162,10 +162,10 @@ gitDateExtractor.getStamps({
 ```
 
 My project structure has `content` on the root and blog posts go into `content/blog`, so
-this hook creates the timestamps.json file in `content/blog`. Setting the `gitCommitHook`
-property to `pre` adds the `timestamps.json` file into the same commit. You will end up
-with a file that looks like this, a simple object keyed by filename with created and
-modified unix timestamps.
+this hook creates the `timestamps.json` file in `content/blog`. Setting the
+`gitCommitHook` property to `pre` adds the `timestamps.json` file into the same commit.
+You will end up with a file that looks like this, a simple object keyed by filename with
+created and modified unix timestamps.
 
 ```json
 {
@@ -197,7 +197,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   let gitTime
   const fileName = node.fields.slug.replace(/\//g, '')
 
-  if (timestamps) {                                           // highlight-line
+  if (timestamps && timestamps[`${fileName}.md`]) {           // highlight-line
     const timestamp = timestamps[`${fileName}.md`][`created`] // highlight-line
     gitTime = moment.unix(timestamp).format()                 // highlight-line
   }                                                           // highlight-line

@@ -112,7 +112,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     let gitTime
     const fileName = node.fields.slug.replace(/\//g, '')
 
-    if (timestamps) {
+    if (timestamps && timestamps[`${fileName}.md`]) {
       const timestamp = timestamps[`${fileName}.md`][`created`]
       gitTime = moment.unix(timestamp).format()
     } else {

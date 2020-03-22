@@ -12,6 +12,8 @@ used in the [previous post](/gatsby-tags) on adding #hashtagging. This is achiev
 the `prismjs` library, provided as part of the `gatsby-remark-prismjs` plugin that is
 shipped together with the `gatsby-starter-blog` starter.
 
+![alt text](../assets/prism-nyan-cat.jpg "Amazing things come out of prisms")
+
 ## Marking code for syntax highlighting
 Markdown uses the backtick character (`` ` ``) to denote code blocks - either surround
 your inline code with single backticks (`` `hello` ``) or triple backticks for multi-line
