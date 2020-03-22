@@ -4,7 +4,6 @@ title: Using Dates in Gatsby
 tags:
 - gatsby
 - date
-draft: true
 ---
 There are a couple of ways you can date your posts in Gatsby. We'll discuss the easiest
 method and two others that are more dynamic to deliver a more "wordpress" feel to managing
@@ -56,6 +55,9 @@ const BlogPostTemplate = ({ data, location }) => {
   )
 }
 ```
+
+So far so good, this approach gives you complete control over the exact dates for each
+post. However, not everyone is a fan of having to manually enter dates for each post.
 
 ## Dynamic dates using git commits
 The most obvious dynamic way to derive a post's date is by the date when the file was
@@ -125,5 +127,31 @@ which reflects in the blog. The workaround is more drastic in that after perform
 commit, I manually change the commit date to the original post date before pushing. (I'll
 write a separate post on git cheats to describe this in due time).
 
-## Dynamic dates using git pre-commit hooks
-The third method involves using git to automate the first method.
+## Dynamic dates using git pre-commit hook
+The third method involves using git to automate either the first or second method. There's
+a CLI called [git-date-extractor](https://github.com/joshuatz/git-date-extractor) that
+does the hard work of crawling the directory, extracting the git created/modified dates
+and caching it into a file for you. You should read the project readme to find out more on
+the available options but here's a sample:
+```bash
+node_modules/git-date-extractor/src/cli.js --projectRootPath=. --onlyIn=content/blog --outputToFile=true
+```
+
+What you then need to do is to run that CLI in a git pre-commit hook by adding it to
+`.git/hooks/pre-commit`. Alternatively, commit a new directory (e.g. `.githooks`) and add
+the CLI into `.githooks/pre-commit`. On each computer you plan to author your blog in, set
+up the git hooks path by running `git config core.hooksPath .githooks`.
+
+Next, use `gatsby-node.js` to read the `timestamps.json` cache and add the gitTime field
+with this value instead. I haven't tried this method out yet, but it should in theory
+solve both problems in the previous method: since the hook runs at commit-time, there's no
+dependency on the deployment server to have git history. Also, since this CLI (and the
+resulting cache file) has both created and modified dates, I can choose to use the created
+date in the displayed time stamp and make edits as I please without messing with git
+commit dates.
+
+## Beyond Gatsby
+This post wraps up the [#gatsby](/tags/gatsby) series for getting started on building a
+tech blog with some of my must-have features like hashtagging, syntax highlighting and
+automatic dating. I shall move on to writing about the various disparate topics that
+inspired me to start this place to begin with. Stay tuned!
