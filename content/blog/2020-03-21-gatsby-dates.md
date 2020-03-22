@@ -5,6 +5,9 @@ tags:
 - gatsby
 - date
 ---
+With [Pi Day](https://www.piday.org) having just past last week, we're here to talk about dates in Gatsby.
+![alt text](../assets/pi-day.jpg "Pi Day. Errr day.")
+
 There are a couple of ways you can date your posts in Gatsby. We'll discuss the easiest
 method and two others that are more dynamic to deliver a more "wordpress" feel to managing
 a blogging experience.
@@ -28,15 +31,18 @@ query BlogPostBySlug($slug: String!) {
     ...
     frontmatter {
       title
-      date(formatString: "MMM Do YYYY, h:mma") // highlight-line
+      date // highlight-line
       tags
     }
   }
 }
 ```
 
-Rendering is the same as well.
+Rendering is pretty standard, aside from using `moment` to format the dates.
 ```javascript
+import moment from "moment" // highlight-line
+...
+
 const BlogPostTemplate = ({ data, location }) => {
   ...
   const { title, date } = data.markdownRemark.frontmatter // highlight-line
@@ -47,7 +53,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <article>
         <header>
           <h2>{title}</h2>
-          <p>{date}</p> // highlight-line
+          <p>{moment(date).format("MMM Do YYYY, h:mma")}</p> // highlight-line
         </header>
         <section dangerouslySetInnerHTML={{ __html: html }} />
       </article>
@@ -79,7 +85,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const relativePath = `content/blog/${fileName}.md`
   const gitTime = execSync(
     `git log -1 --pretty=format:%aI ${relativePath}`
-  ).toString().replace(/\+08:00/g, 'Z')
+  ).toString()
 
   actions.createNodeField({
     name: `gitTime`,
@@ -95,7 +101,7 @@ query BlogPostBySlug($slug: String!) {
   markdownRemark(fields: { slug: { eq: $slug } }) {
     ...
     fields {
-      gitTime(formatString: "MMM Do YYYY, h:mma") // highlight-line
+      gitTime // highlight-line
     }
     frontmatter {
       title
@@ -110,10 +116,10 @@ Rendering is the same as in the previous example, again just substituting `field
 const { gitTime } = data.markdownRemark.fields
 ```
 
-This is the method I'm using to date the posts in this blog, but i've noticed two issues
-thus far. First is that when deploying via zeit, the `.git` directory is not present in
-the deployment directory, hence the `git` command cannot pull history. You can work around
-this by changing your `build` command in your `package.json` to the following:
+I have two issues with this approach. First is that when deploying via zeit, the `.git`
+directory is not present in the deployment directory, hence the `git` command cannot pull
+history. You can work around this by changing your `build` command in your `package.json`
+to the following:
 ```bash
 git clone --no-checkout https://github.com/... x && cp -r x/.git . && gatsby build
 ```
@@ -128,27 +134,88 @@ commit, I manually change the commit date to the original post date before pushi
 write a separate post on git cheats to describe this in due time).
 
 ## Dynamic dates using git pre-commit hook
-The third method involves using git to automate either the first or second method. There's
-a CLI called [git-date-extractor](https://github.com/joshuatz/git-date-extractor) that
-does the hard work of crawling the directory, extracting the git created/modified dates
-and caching it into a file for you. You should read the project readme to find out more on
-the available options but here's a sample:
+The third method involves using a git hook to automate either the first or second method.
+There's a project called
+[git-date-extractor](https://github.com/joshuatz/git-date-extractor) that does the hard
+work of crawling the directory, extracting the git created/modified dates and caching it
+into a file for you. You should read the project docs to find out more on the available
+options but here's a sample in CLI mode:
 ```bash
 node_modules/git-date-extractor/src/cli.js --projectRootPath=. --onlyIn=content/blog --outputToFile=true
 ```
 
 What you then need to do is to run that CLI in a git pre-commit hook by adding it to
-`.git/hooks/pre-commit`. Alternatively, commit a new directory (e.g. `.githooks`) and add
-the CLI into `.githooks/pre-commit`. On each computer you plan to author your blog in, set
-up the git hooks path by running `git config core.hooksPath .githooks`.
+`.git/hooks/pre-commit`. The `.git` directory doesn't persist, so if you're using multiple
+computers to author posts, commit a new directory (e.g. `.hooks`) and add the CLI into
+`.hooks/pre-commit`. On each computer you plan to author on, set up the git hooks path by
+running `git config core.hooksPath .hooks`. I chose to run it as a node script as I found
+it was writing absolute paths in CLI mode and I needed this to run in different environments.
 
-Next, use `gatsby-node.js` to read the `timestamps.json` cache and add the gitTime field
-with this value instead. I haven't tried this method out yet, but it should in theory
-solve both problems in the previous method: since the hook runs at commit-time, there's no
-dependency on the deployment server to have git history. Also, since this CLI (and the
-resulting cache file) has both created and modified dates, I can choose to use the created
-date in the displayed time stamp and make edits as I please without messing with git
-commit dates.
+```javascript
+#!/usr/bin/env node
+const gitDateExtractor = require('git-date-extractor')
+gitDateExtractor.getStamps({
+  outputToFile: true,
+  projectRootPath: `${__dirname}/../content/blog`,
+  gitCommitHook: 'pre'
+})
+```
+
+My project structure has `content` on the root and blog posts go into `content/blog`, so
+this hook creates the timestamps.json file in `content/blog`. Setting the `gitCommitHook`
+property to `pre` adds the `timestamps.json` file into the same commit. You will end up
+with a file that looks like this, a simple object keyed by filename with created and
+modified unix timestamps.
+
+```json
+{
+  "2020-03-21-gatsby-dates.md": {
+    "created": 1584785764,
+    "modified": 1584858812
+  }
+}
+```
+
+Next, use `gatsby-node.js` to read the `timestamps.json` file and add the gitTime field
+with this value instead. Also, fallback to using the real-time git command if the cache
+file doesn't exist (i.e. when using `gatsby develop` before the pre-commit hook has run
+for the very first time)
+
+```javascript
+const fs = require(`fs`)         // highlight-line
+const moment = require(`moment`) // highlight-line
+
+const timestampsFile = `${__dirname}/content/blog/timestamps.json` // highlight-line
+let timestamps                                                     // highlight-line
+if (fs.existsSync(timestampsFile)) {                               // highlight-line
+  timestamps = JSON.parse(fs.readFileSync(timestampsFile, 'utf8')) // highlight-line
+}                                                                  // highlight-line
+...
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  ...
+  let gitTime
+  const fileName = node.fields.slug.replace(/\//g, '')
+
+  if (timestamps) {                                           // highlight-line
+    const timestamp = timestamps[`${fileName}.md`][`created`] // highlight-line
+    gitTime = moment.unix(timestamp).format()                 // highlight-line
+  }                                                           // highlight-line
+  else {
+    const relativePath = `content/blog/${fileName}.md`
+    gitTime = execSync(
+      `git log -1 --pretty=format:%aI ${relativePath}`
+    ).toString()
+  }
+  ...
+}
+```
+
+This approach solves both of my concerns from the previous method: since the hook runs at
+commit-time, there's no dependency on the deployment server to have git history. Also,
+since this method captures both created and modified dates, I can choose to use the
+created date in the displayed time stamp and make edits as I please without messing with
+actual git commit dates.
 
 ## Beyond Gatsby
 This post wraps up the [#gatsby](/tags/gatsby) series for getting started on building a
