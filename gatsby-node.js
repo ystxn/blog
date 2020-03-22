@@ -1,6 +1,17 @@
 const path = require(`path`)
+const fs = require(`fs`)
+const moment = require(`moment`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const { execSync } = require('child_process')
+const { execSync } = require(`child_process`)
+
+const timestampsFile = `${__dirname}/content/blog/timestamps.json`
+let timestamps
+if (fs.existsSync(timestampsFile)) {
+  timestamps = JSON.parse(fs.readFileSync(timestampsFile, 'utf8'))
+  console.log(`Using timestamps file`)
+} else {
+  console.log(`Not using timestamps file`)
+}
 
 exports.sourceNodes = ({ actions }) => {
   const { createTypes} = actions
@@ -98,11 +109,18 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   const { templateKey: template } = node.frontmatter
   if (!template || template === 'blog-post') {
+    let gitTime
     const fileName = node.fields.slug.replace(/\//g, '')
-    const relativePath = `content/blog/${fileName}.md`
-    const gitTime = execSync(
-      `git log -1 --pretty=format:%aI ${relativePath}`
-    ).toString().replace(/\+08:00/g, 'Z')
+
+    if (timestamps) {
+      const timestamp = timestamps[`${fileName}.md`][`created`]
+      gitTime = moment.unix(timestamp).format()
+    } else {
+      const relativePath = `content/blog/${fileName}.md`
+      gitTime = execSync(
+        `git log -1 --pretty=format:%aI ${relativePath}`
+      ).toString()
+    }
     actions.createNodeField({
       name: `gitTime`,
       node,

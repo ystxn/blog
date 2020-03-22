@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import moment from "moment"
 
 const BlogIndex = ({ data, location }) => {
   const { title, description } = data.site.siteMetadata
@@ -13,9 +14,10 @@ const BlogIndex = ({ data, location }) => {
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         const { gitTime, readingTime } = node.fields
-        const date = gitTime === 'Invalid date' ? '<Unpublished Post />' : gitTime
+        const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
+          : '<Unpublished Post />'
         const tags = node.frontmatter.tags || []
-        const tagsList = tags
+        const tagsList = tags.length === 0 ? '' : tags
           .map(t => <Link key={t} to={`/tags/${t.replace(/ /g, "-")}`}>#{t}</Link>)
           .reduce((prev, curr) => [prev, ", ", curr])
         return (
@@ -29,7 +31,7 @@ const BlogIndex = ({ data, location }) => {
                   {title}
                 </Link>
               </h3>
-              <div class="article-date">
+              <div className='article-date'>
                 <p>{date}</p>
                 <p>
                   {readingTime.words} words,{` `}
@@ -74,7 +76,7 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 280)
           fields {
             slug
-            gitTime(formatString: "MMM Do YYYY, h:mma")
+            gitTime
             readingTime {
               words
               minutes

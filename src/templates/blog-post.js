@@ -2,11 +2,13 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import moment from "moment"
 import "./blog-post.scss"
 
 const BlogPostTemplate = ({ data, location }) => {
   const { gitTime, readingTime } = data.markdownRemark.fields
-  const date = gitTime === 'Invalid date' ? '<Unpublished Post />' : gitTime
+  const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
+    : '<Unpublished Post />'
   const post = data.markdownRemark
   const { title, description } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
@@ -23,7 +25,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <article>
         <header>
           <h2>{post.frontmatter.title}</h2>
-          <div class="article-date">
+          <div className='article-date'>
             <p>{date}</p>
             <p>
               {readingTime.words} words,{` `}
@@ -53,7 +55,7 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 160)
       html
       fields {
-        gitTime(formatString: "MMM Do YYYY, h:mma")
+        gitTime
         readingTime {
           words
           minutes
