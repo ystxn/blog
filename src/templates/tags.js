@@ -31,7 +31,6 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       filter: {
-        fields: { draft: { eq: false } }
         frontmatter: { tags: { in: [$tag] } }
       }
       sort: { fields: [fields___slug], order: DESC }

@@ -65,7 +65,6 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       filter: {
-        fields: { draft: { eq: false } }
         frontmatter: { templateKey: { ne: "page" } }
       }
       sort: { fields: [fields___slug], order: DESC }

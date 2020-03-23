@@ -13,18 +13,6 @@ if (fs.existsSync(timestampsFile)) {
   console.log(`Not using timestamps file`)
 }
 
-exports.sourceNodes = ({ actions }) => {
-  const { createTypes} = actions
-  createTypes([`
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-    }
-    type Frontmatter {
-      draft: Boolean
-    }
-  `])
-}
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(
@@ -37,7 +25,6 @@ exports.createPages = async ({ graphql, actions }) => {
                 slug
               }
               frontmatter {
-                draft
                 slug
                 title
                 tags
@@ -62,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
 
-    if (post.node.frontmatter.tags && post.node.frontmatter.draft === null) {
+    if (post.node.frontmatter.tags) {
       tags = tags.concat(post.node.frontmatter.tags)
     }
     const template = post.node.frontmatter.templateKey || 'blog-post'
@@ -99,12 +86,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     name: `slug`,
     node,
     value: createFilePath({ node, getNode }),
-  })
-
-  actions.createNodeField({
-    name: `draft`,
-    node,
-    value: node.frontmatter.draft || false,
   })
 
   const { templateKey: template } = node.frontmatter
