@@ -34,8 +34,7 @@ const BlogIndex = ({ data, location }) => {
               <div className='article-date'>
                 <p>{date}</p>
                 <p>
-                  {readingTime.words} words,{` `}
-                  {Math.ceil(readingTime.minutes)} mins to read
+                  {Math.ceil(readingTime.minutes)} min read
                 </p>
               </div>
               <p>{tagsList}</p>
@@ -78,7 +77,6 @@ export const pageQuery = graphql`
             slug
             gitTime
             readingTime {
-              words
               minutes
             }
           }

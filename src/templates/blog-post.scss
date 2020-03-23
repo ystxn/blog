@@ -8,11 +8,6 @@ article {
             display: flex;
             justify-content: space-between;
             p { color: darken($text, 20%) }
-
-            @media only screen and (max-width: 512px) {
-                display: block;
-                p:nth-child(1) { margin-bottom: 0 }
-            }
         }
     }
     section {
