@@ -1,5 +1,4 @@
 ---
-templateKey: blog-post
 slug: gatsby-syntax-highlighting
 title: Syntax Highlighting in Gatsby
 tags:

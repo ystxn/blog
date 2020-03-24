@@ -1,5 +1,4 @@
 ---
-templateKey: blog-post
 slug: gatsby-tags
 title: 'Adding #hashtagging to Gatsby'
 tags:

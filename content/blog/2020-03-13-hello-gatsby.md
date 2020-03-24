@@ -1,5 +1,4 @@
 ---
-templateKey: blog-post
 slug: hello-gatsby
 title: Building a Gatsby Blog
 tags:
