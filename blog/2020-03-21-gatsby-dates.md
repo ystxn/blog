@@ -5,9 +5,10 @@ tags:
 - gatsby
 - date
 - git
+image: pi-day.jpg
 ---
 With [Pi Day](https://www.piday.org) having just past last week, we're here to talk about dates in Gatsby.
-![alt text](../assets/pi-day.jpg "Pi Day. Errr day.")
+![alt text](../static/pi-day.jpg "Pi Day. Errr day.")
 
 There are a couple of ways you can date your posts in Gatsby. We'll discuss the easiest
 method and two others that are more dynamic to deliver a more "wordpress" feel to managing

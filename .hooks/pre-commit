@@ -2,6 +2,6 @@
 const gitDateExtractor = require('git-date-extractor')
 gitDateExtractor.getStamps({
     outputToFile: true,
-    projectRootPath: `${__dirname}/../content/blog`,
+    projectRootPath: `${__dirname}/../blog`,
     gitCommitHook: 'pre'
 })

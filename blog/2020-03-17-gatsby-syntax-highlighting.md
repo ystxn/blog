@@ -5,13 +5,14 @@ tags:
 - gatsby
 - syntax-highlighting
 - prismjs
+image: prism-nyan-cat.jpg
 ---
 You might have noticed a fair amount of code samples presented with syntax highlighting
 used in the [previous post](/gatsby-tags) on adding #hashtagging. This is achieved using
 the `prismjs` library, provided as part of the `gatsby-remark-prismjs` plugin that is
 shipped together with the `gatsby-starter-blog` starter.
 
-![alt text](../assets/prism-nyan-cat.jpg "Amazing things come out of prisms")
+![alt text](../static/prism-nyan-cat.jpg "Amazing things come out of prisms")
 
 ## Marking code for syntax highlighting
 Markdown uses the backtick character (`` ` ``) to denote code blocks - either surround

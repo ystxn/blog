@@ -4,13 +4,22 @@ const moment = require(`moment`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { execSync } = require(`child_process`)
 
-const timestampsFile = `${__dirname}/content/blog/timestamps.json`
+const timestampsFile = `${__dirname}/blog/timestamps.json`
 let timestamps
 if (fs.existsSync(timestampsFile)) {
   timestamps = JSON.parse(fs.readFileSync(timestampsFile, 'utf8'))
-  console.log(`Using timestamps file`)
-} else {
-  console.log(`Not using timestamps file`)
+}
+
+exports.sourceNodes = ({ actions }) => {
+  const { createTypes} = actions
+  createTypes([`
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+    }
+    type Frontmatter {
+      image: String
+    }
+  `])
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -97,7 +106,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       const timestamp = timestamps[`${fileName}.md`][`created`]
       gitTime = moment.unix(timestamp).format()
     } else {
-      const relativePath = `content/blog/${fileName}.md`
+      const relativePath = `blog/${fileName}.md`
       gitTime = execSync(
         `git log -1 --pretty=format:%aI ${relativePath}`
       ).toString()

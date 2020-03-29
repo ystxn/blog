@@ -18,22 +18,22 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/blog`,
+        path: `${__dirname}/blog`,
         name: `blog`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/pages`,
+        path: `${__dirname}/pages`,
         name: `assets`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`,
+        path: `${__dirname}/static`,
+        name: `static`,
       },
     },
     {
@@ -93,7 +93,7 @@ module.exports = {
         background_color: `#1e1e1e`,
         theme_color: `lightseagreen`,
         display: `standalone`,
-        icon: `content/assets/rocket.png`,
+        icon: `static/rocket.png`,
       },
     },
     `gatsby-plugin-sass`,

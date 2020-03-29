@@ -4,6 +4,7 @@ title: Git Cheats
 tags:
 - git
 - cheatsheet
+image: rocket.png
 ---
 This post is meant to sum up the most useful things I have learnt about the `git` command
 line from many years of adventures in the source control world. I will probably update
@@ -113,7 +114,7 @@ eventually merge your branch into `master`.
 ```bash
 git rebase master
 ```
-![alt text](../assets/git-rebase.gif "Rebase in action")
+![alt text](../static/git-rebase.gif "Rebase in action")
 
 ## Interactive Rebasing (the dangerous kind)
 Rebasing also has a very different ability that allows you to rewrite history using the
