@@ -130,8 +130,9 @@ performing `gatsby build`.
 The second issue is more subjective in that I find myself having to make tiny edits to
 posts that have already been published. This changes the latest commit date of that file,
 which reflects in the blog. The workaround is more drastic in that after performing a
-commit, I manually change the commit date to the original post date before pushing. (I'll
-write a separate post on git cheats to describe this in due time).
+commit, I manually change the commit date to the original post date before pushing.
+~~(I'll write a separate post on git cheats to describe this in due time).~~ ([Here's how
+to manually edit dates in git history](git-cheats#changing-commit-time))
 
 ## Dynamic dates using git pre-commit hook
 The third method involves using a git hook to automate either the first or second method.
