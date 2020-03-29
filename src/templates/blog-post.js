@@ -10,10 +10,10 @@ const BlogPostTemplate = ({ data, location }) => {
   const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
     : '<Unpublished Post />'
   const post = data.markdownRemark
-  const { title, description } = data.site.siteMetadata
+  const { title, description, siteUrl } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
   const tagsList = tags.map(t => (
-      <Link key={t} to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
+    <Link key={t} to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
   )).reduce((prev, curr) => [prev, ', ', curr])
 
   return (
@@ -21,6 +21,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
+        image={`${location.protocol}//${location.host}/${post.frontmatter.image}`}
       />
       <article>
         <header>
@@ -47,6 +48,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -63,6 +65,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         tags
+        image
       }
     }
   }

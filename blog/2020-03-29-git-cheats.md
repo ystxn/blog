@@ -4,6 +4,7 @@ title: Git Cheats
 tags:
 - git
 - cheatsheet
+image: rocket.png
 ---
 This post is meant to sum up the most useful things I have learnt about the `git` command
 line from many years of adventures in the source control world. I will probably update

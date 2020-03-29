@@ -5,6 +5,7 @@ tags:
 - gatsby
 - react
 - hashtag
+image: hashtag.jpg
 ---
 Following the [previous post](/hello-gatsby) on bootstrapping a bare basics Gatsby blog,
 let's explore adding hashtag functionality to make it feel less static. You can add any
@@ -12,7 +13,7 @@ metadata you like to the markdown header bits of your posts and query them later
 GraphQL to create a sense of data-driven dynamics. In this post, we'll look at using this
 to [#hashtag](/tags/hashtag)-enable your blog.
 
-![alt text](../assets/hashtag.jpg "Hashtags. Photo by Jan Baborák on Unsplash.")
+![alt text](../static/hashtag.jpg "Hashtags. Photo by Jan Baborák on Unsplash.")
 
 ## Step 1. Add tags to individual markdown posts
 ```markdown
