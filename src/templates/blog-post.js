@@ -21,7 +21,7 @@ const BlogPostTemplate = ({ data, location }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
-        image={`${location.protocol}//${location.host}/${post.frontmatter.image}`}
+        image={`${siteUrl}/${post.frontmatter.image}`}
       />
       <article>
         <header>

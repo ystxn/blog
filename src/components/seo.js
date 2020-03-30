@@ -30,9 +30,11 @@ const SEO = ({ description, lang, meta, title, image }) => {
   const displayTitle = `${site.siteMetadata.title}${pageTitleSuffix}`
 
   if (image) {
-    meta.push({ property: `og:image`, content: image })
-    meta.push({ property: `og:image:secure_url`, content: image })
-    meta.push({ name: `twitter:image`, content: image })
+    meta = [
+      { property: `og:image`, content: image },
+      { property: `og:image:secure_url`, content: image },
+      { name: `twitter:image`, content: image },
+    ].concat(meta)
   }
 
   return (
