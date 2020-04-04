@@ -69,5 +69,15 @@ article {
                 margin-top: 0.2em; content: close-quote
             }
         }
+        table {
+            border-collapse: collapse;
+            th { text-align: left }
+            td, th {
+                padding: 0.3em 0.5em;
+                border: darken($text, 50%) 1px solid;
+            }
+            thead tr:first-child { background: darken($text, 70%) }
+            tr:nth-child(even) { background: darken($text, 70%) }
+        }
     }
 }
