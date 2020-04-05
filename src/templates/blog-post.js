@@ -4,6 +4,16 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import moment from "moment"
 import "./blog-post.scss"
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  WhatsappIcon
+} from "react-share";
 
 const BlogPostTemplate = ({ data, location }) => {
   const { gitTime, readingTime } = data.markdownRemark.fields
@@ -15,6 +25,18 @@ const BlogPostTemplate = ({ data, location }) => {
   const tagsList = tags.map(t => (
     <Link key={t} to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
   )).reduce((prev, curr) => [prev, ', ', curr])
+  const shareProps = {
+    title: post.frontmatter.title,
+    summary: post.excerpt,
+    source: title,
+    hashtags: tags,
+    url: `${siteUrl}/${post.frontmatter.slug}`
+  }
+  const iconProps = {
+    size: 32,
+    round: true,
+    iconFillColor: 'black'
+  }
 
   return (
     <Layout location={location} title={title} subTitle={description}>
@@ -35,6 +57,13 @@ const BlogPostTemplate = ({ data, location }) => {
           <p>{tagsList}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <footer>
+          <h4>Share this post:</h4>
+          <FacebookShareButton {...shareProps} children={<FacebookIcon {...iconProps} />} />
+          <LinkedinShareButton {...shareProps} children={<LinkedinIcon {...iconProps} />} />
+          <TwitterShareButton {...shareProps} children={<TwitterIcon {...iconProps} />} />
+          <WhatsappShareButton {...shareProps} children={<WhatsappIcon {...iconProps} />} />
+        </footer>
       </article>
     </Layout>
   )
@@ -66,6 +95,7 @@ export const pageQuery = graphql`
         title
         tags
         image
+        slug
       }
     }
   }
