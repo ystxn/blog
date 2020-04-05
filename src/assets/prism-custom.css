@@ -17,6 +17,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+  border-radius: .4em;
 }
 
 pre[class*="language-"] > code[class*="language-"] {

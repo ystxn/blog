@@ -35,7 +35,10 @@ article {
                 padding: 0.15em 0.25em
             }
         }
-        img { max-width: 100% }
+        img {
+            max-width: 100%;
+            border-radius: .4em;
+        }
         span.gatsby-resp-image-wrapper { margin: 1.5em 0 }
         div.gatsby-highlight {
             margin-bottom: 1.5rem;
@@ -69,15 +72,31 @@ article {
                 margin-top: 0.2em; content: close-quote
             }
         }
+
         table {
-            border-collapse: collapse;
-            th { text-align: left }
+            border-collapse: separate;
+            border: darken($text, 50%) 1px solid;
+            border-spacing: 0;
+            border-radius: .4em;
             td, th {
                 padding: 0.3em 0.5em;
-                border: darken($text, 50%) 1px solid;
+                border: none;
+                border-left: darken($text, 50%) 1px solid;
+                border-top: darken($text, 50%) 1px solid;
+                &:first-child { border-left: none }
             }
-            thead tr:first-child { background: darken($text, 70%) }
-            tr:nth-child(even) { background: darken($text, 70%) }
+            th {
+                text-align: left;
+                border-top: none
+            }
+            thead tr:first-child th { background: darken($themePrimary, 25%) }
+            tr:nth-child(even) td { background: darken($text, 65%) }
+        }
+
+        span.gatsby-resp-image-wrapper { margin-bottom: 0.5em }
+        figcaption {
+            color: darken($text, 20%);
+            font-style: italic;
         }
     }
 }
