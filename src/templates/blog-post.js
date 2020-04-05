@@ -16,7 +16,7 @@ import {
 } from "react-share";
 
 const BlogPostTemplate = ({ data, location }) => {
-  const { gitTime, readingTime } = data.markdownRemark.fields
+  const { gitTime } = data.markdownRemark.fields
   const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
     : '<Unpublished Post />'
   const post = data.markdownRemark
@@ -51,7 +51,7 @@ const BlogPostTemplate = ({ data, location }) => {
           <div className='article-date'>
             <p>{date}</p>
             <p>
-              {Math.ceil(readingTime.minutes)} min read
+              {post.timeToRead} min read
             </p>
           </div>
           <p>{tagsList}</p>
@@ -86,10 +86,6 @@ export const pageQuery = graphql`
       html
       fields {
         gitTime
-        readingTime {
-          words
-          minutes
-        }
       }
       frontmatter {
         title
@@ -97,6 +93,7 @@ export const pageQuery = graphql`
         image
         slug
       }
+      timeToRead
     }
   }
 `

@@ -13,7 +13,7 @@ const BlogIndex = ({ data, location }) => {
       <SEO title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
-        const { gitTime, readingTime } = node.fields
+        const { gitTime } = node.fields
         const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
           : '<Unpublished Post />'
         const tags = node.frontmatter.tags || []
@@ -34,7 +34,7 @@ const BlogIndex = ({ data, location }) => {
               <div className='article-date'>
                 <p>{date}</p>
                 <p>
-                  {Math.ceil(readingTime.minutes)} min read
+                  {node.timeToRead} min read
                 </p>
               </div>
               <p>{tagsList}</p>
@@ -75,15 +75,13 @@ export const pageQuery = graphql`
           fields {
             slug
             gitTime
-            readingTime {
-              minutes
-            }
           }
           frontmatter {
             slug
             title
             tags
           }
+          timeToRead
         }
       }
     }
