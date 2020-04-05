@@ -76,7 +76,7 @@ article {
             border-collapse: separate;
             border: darken($text, 50%) 1px solid;
             border-spacing: 0;
-            border-radius: .4em;
+            border-radius: 0.4rem;
             td, th {
                 padding: 0.3em 0.5em;
                 border: none;
@@ -88,8 +88,12 @@ article {
                 text-align: left;
                 border-top: none
             }
-            thead tr:first-child th { background: darken($themePrimary, 25%) }
-            tr:nth-child(even) td { background: darken($text, 65%) }
+            thead tr:first-child {
+                background: darken($themePrimary, 25%);
+                th:first-child { border-radius: 0.4rem 0 0 0 }
+                th:last-child { border-radius: 0 0.4rem 0 0 }
+            }
+            tr:nth-child(even) { background: darken($text, 65%) }
         }
 
         span.gatsby-resp-image-wrapper { margin-bottom: 0.5em }
