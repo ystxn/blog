@@ -194,3 +194,5 @@ kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 ## Let there be light
 Your cluster is now alive, albeit in a very basic form. There will be more posts in this
 series to elaborate on things you can add to your cluster to achieve a more *cloud* feel.
+
+![alt text](../static/raspberry-pi-network.jpg "Operational cluster network")
