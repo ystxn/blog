@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { CSSTransition } from 'react-transition-group';
+import "./scroll-button.scss"
 
 const ScrollButton = () => {
     const [ scrolled, setScrolled ] = useState(false);

@@ -1,0 +1,54 @@
+@import "../assets/theme.scss";
+
+.scrollButton {
+  position: fixed;
+  right: 2rem;
+  cursor: pointer;
+  background: $themePrimary;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: black;
+  text-align: center;
+  font-size: 2rem;
+
+  &:hover {
+    opacity: 1;
+    animation: wiggle 1s ease;
+    animation-iteration-count: 1;
+  }
+  @keyframes wiggle {
+    20% { transform: translateY(0.5em) }
+    40% { transform: translateY(-0.5em) }
+    60% { transform: translateY(0.3em) }
+    80% { transform: translateY(-0.1em) }
+    100% { transform: translateY(0) }
+  }
+}
+
+.display-enter {
+  opacity: 0;
+  bottom: -1rem;
+  transition: all 0.4s;
+}
+
+.display-enter-active {
+  opacity: 0.8;
+  bottom: 2rem;
+}
+
+.display-enter-done {
+  opacity: 0.8;
+  bottom: 2rem;
+}
+
+.display-exit {
+  opacity: 0.8;
+  bottom: 2rem;
+}
+
+.display-exit-active {
+  opacity: 0;
+  bottom: -1rem;
+  transition: all 0.4s;
+}
