@@ -22,36 +22,40 @@ const NavBar = () => {
 const SubTitle = ({ subTitle }) => (subTitle ? <h5>{subTitle}</h5> : "")
 
 const Layout = ({ title, subTitle, children }) => {
+  const transitionTime = 250
+  const defaultStyle = {
+    transition: 'all 250ms',
+    left: '0',
+    position: 'relative',
+    width: '100%',
+    opacity: 0
+  }
+  const transitionStyles = {
+    entering: { left: '1%', opacity: 0 },
+    entered: { left: '0', opacity: 1 }
+  }
+  const transitionProps = {
+    defaultStyle, transitionStyles, transitionTime
+  }
   return (
-    <PageTransition
-      defaultStyle={{
-        transition: 'all 250ms',
-        left: '0',
-        position: 'absolute',
-        width: '100%',
-        opacity: 0
-      }}
-      transitionStyles={{
-        entering: { left: '30%', opacity: 0 },
-        entered: { left: '0', opacity: 1 }
-      }}
-      transitionTime={250}
-    >
-      <div className="envelope">
-        <header className="main-header">
-          <h2>
-            <Link to={`/`}>{title}</Link>
-          </h2>
-          <SubTitle subTitle={subTitle} />
-        </header>
-        <NavBar />
-        <main>{children}</main>
-        <footer>
-          <Bio />
-        </footer>
-        <ScrollButton />
-      </div>
-    </PageTransition>
+    <div className="envelope">
+      <header className="main-header">
+        <h2>
+          <Link to={`/`}>{title}</Link>
+        </h2>
+        <SubTitle subTitle={subTitle} />
+      </header>
+      <NavBar />
+      <main>
+        <PageTransition {...transitionProps}>
+          {children}
+        </PageTransition>
+      </main>
+      <footer>
+        <Bio />
+      </footer>
+      <ScrollButton />
+    </div>
   )
 }
 export default Layout
