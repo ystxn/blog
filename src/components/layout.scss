@@ -12,6 +12,17 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0.4rem;
+  background-image: -webkit-gradient(linear, left top, right bottom,
+                    color-stop(0, darken($themePrimary, 17%)),
+                    color-stop(0.25, darken($themePrimary, 6%)),
+                    color-stop(1.0, darken($themePrimary, 28%)));
+}
 a {
   color: $themePrimary;
   text-decoration: none;
