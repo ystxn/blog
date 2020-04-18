@@ -20,8 +20,8 @@ article {
         h4 { font-size: 1.1em }
         h5 { font-size: 1.0em }
         h6 { font-size: 0.9em }
-        p {
-            margin: 0.5rem 0 0.5rem 0;
+        > p {
+            margin: 0.5rem 0 1.1rem 0;
             font-weight: 100
         }
         ul { margin: 0.5rem 0 1rem 2rem }
@@ -56,7 +56,7 @@ article {
             p {
                 color: lighten($themePrimary, 50%);
                 font-style: italic;
-                padding: 0.2em 0.7em 0.2em 0.9em;
+                padding: 0.3em 0.7em 0.2em 0.9em;
             }
             &::before, &::after {
                 font-weight: 900;
@@ -65,7 +65,7 @@ article {
                 line-height: 1em
             }
             &::before {
-                margin-top: 0.6em; content: open-quote
+                margin-top: 0.4em; content: open-quote
             }
             &::after {
                 margin-top: 0.2em; content: close-quote
