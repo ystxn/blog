@@ -100,7 +100,7 @@ DNS Servers = 10.0.0.1 1.1.1.1 8.8.8.8
 For each Pi:
 1. Connect the Micro-USB to HDMI cable between a Pi and a monitor
 2. Connect a USB keyboard to the same Pi
-3. Login to Raspbian with as the user `pi` with password `raspberry`
+3. Login to Raspbian as the user `pi` with password `raspberry`
 4. Update the kernel using `sudo rpi-update` then `sudo reboot`
 5. Enable the 64-bit kernel by adding this line at the end
    - `sudo vi /boot/config.txt`
