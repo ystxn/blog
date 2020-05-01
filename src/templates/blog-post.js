@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Bio from "../components/bio"
 import moment from "moment"
 import "./blog-post.scss"
 import {
@@ -15,12 +15,12 @@ import {
   WhatsappIcon
 } from "react-share";
 
-const BlogPostTemplate = ({ data, location }) => {
+const BlogPostTemplate = ({ data }) => {
   const { gitTime } = data.markdownRemark.fields
   const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
     : '<Unpublished Post />'
   const post = data.markdownRemark
-  const { title, description, siteUrl } = data.site.siteMetadata
+  const { title, siteUrl } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []
   const tagsList = tags.map(t => (
     <Link key={t} to={`/tags/${t.replace(/ /g, '-')}`}>#{t}</Link>
@@ -39,7 +39,7 @@ const BlogPostTemplate = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={title} subTitle={description}>
+    <>
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
@@ -65,7 +65,8 @@ const BlogPostTemplate = ({ data, location }) => {
           <WhatsappShareButton {...shareProps} children={<WhatsappIcon {...iconProps} />} />
         </footer>
       </article>
-    </Layout>
+      <Bio />
+    </>
   )
 }
 
@@ -76,7 +77,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        description
         siteUrl
       }
     }

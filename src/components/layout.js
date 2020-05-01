@@ -1,9 +1,9 @@
 import React from "react"
-import PageTransition from 'gatsby-plugin-page-transitions';
 import ScrollButton from './scroll-button'
-import Bio from "../components/bio"
 import { Link } from "gatsby"
 import "./layout.scss"
+import Transition from "./transition"
+import { useStaticQuery, graphql } from "gatsby"
 
 const NavBar = () => {
   const links = [
@@ -21,39 +21,35 @@ const NavBar = () => {
 
 const SubTitle = ({ subTitle }) => (subTitle ? <h5>{subTitle}</h5> : "")
 
-const Layout = ({ title, subTitle, children }) => {
-  const transitionTime = 250
-  const defaultStyle = {
-    transition: 'all 250ms',
-    left: '0',
-    position: 'relative',
-    width: '100%',
-    opacity: 0
-  }
-  const transitionStyles = {
-    entering: { left: '1%', opacity: 0 },
-    entered: { left: '0', opacity: 1 }
-  }
-  const transitionProps = {
-    defaultStyle, transitionStyles, transitionTime
-  }
+const Layout = ({ location, children }) => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+          }
+        }
+      }
+    `
+  )
+  const { title, description } = data.site.siteMetadata
+
   return (
     <div className="envelope">
       <header className="main-header">
         <h2>
           <Link to={`/`}>{title}</Link>
         </h2>
-        <SubTitle subTitle={subTitle} />
+        <SubTitle subTitle={description} />
       </header>
       <NavBar />
       <main>
-        <PageTransition {...transitionProps}>
+        <Transition location={location}>
           {children}
-        </PageTransition>
+        </Transition>
       </main>
-      <footer>
-        <Bio />
-      </footer>
       <ScrollButton />
     </div>
   )

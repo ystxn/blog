@@ -46,7 +46,7 @@ const Bio = () => {
     .reduce((prev, curr) => [prev, <DotSpace key={curr} />, curr])
 
   return (
-    <>
+    <footer>
       <hr />
       <div style={{ display: `flex` }}>
         <img src={profilePic} alt={author.name} className='profile-pic' />
@@ -57,7 +57,7 @@ const Bio = () => {
         </div>
       </div>
       <hr />
-    </>
+    </footer>
   )
 }
 

@@ -1,10 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Bio from "../components/bio"
 
-export default ({ pageContext, data, location }) => {
-  const { title, description } = data.site.siteMetadata
+export default ({ pageContext, data }) => {
   const pageTitle = `#${pageContext.tag} posts`
   const posts = data.allMarkdownRemark.edges
     .map(({ node: { frontmatter: { title, slug } } }) =>
@@ -13,22 +12,17 @@ export default ({ pageContext, data, location }) => {
       </li>
   )
   return (
-    <Layout location={location} title={title} subTitle={description}>
+    <>
       <SEO title={pageTitle} />
       <h2>{pageTitle} ({data.allMarkdownRemark.totalCount})</h2>
       <ul>{posts}</ul>
-    </Layout>
+      <Bio />
+    </>
   )
 }
 
 export const pageQuery = graphql`
   query($tag: String) {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     allMarkdownRemark(
       filter: {
         frontmatter: { tags: { in: [$tag] } }

@@ -97,9 +97,14 @@ module.exports = {
         icon: `static/rocket.png`,
       },
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout.js`),
+      },
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-page-transitions`
+    `gatsby-plugin-offline`
   ],
 }

@@ -1,15 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import moment from "moment"
+import Bio from "../components/bio"
 
-const BlogIndex = ({ data, location }) => {
-  const { title, description } = data.site.siteMetadata
+const BlogIndex = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout location={location} title={title} subTitle={description}>
+    <>
       <SEO title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
@@ -49,7 +48,8 @@ const BlogIndex = ({ data, location }) => {
           </article>
         )
       })}
-    </Layout>
+      <Bio />
+    </>
   )
 }
 
@@ -57,12 +57,6 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     allMarkdownRemark(
       filter: {
         frontmatter: { templateKey: { ne: "page" } }

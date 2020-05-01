@@ -1,10 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Bio from "../components/bio"
 
-export default ({ data, location }) => {
-  const { title, description } = data.site.siteMetadata
+export default ({ data }) => {
   const group = data.allMarkdownRemark.group
   const tags = group
     .sort((a, b) => b.totalCount - a.totalCount)
@@ -18,24 +17,20 @@ export default ({ data, location }) => {
     )
 
   return (
-    <Layout location={location} title={title} subTitle={description}>
+    <>
       <SEO title="Tags" />
       <div>
         <h2>Tags</h2>
         <ul>{tags}</ul>
       </div>
-    </Layout>
+
+      <Bio />
+    </>
   )
 }
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     allMarkdownRemark {
       group(field: frontmatter___tags) {
         fieldValue

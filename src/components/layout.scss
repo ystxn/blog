@@ -53,7 +53,10 @@ div.envelope {
   max-width: 42rem;
   padding: 1rem 2.6rem;
 
-  main { margin-top: 2.5rem; }
+  main {
+    position: relative;
+    margin-top: 2.5rem;
+  }
 }
 nav.main-nav {
   margin-top: 1.2rem;
@@ -100,7 +103,7 @@ img.profile-pic {
   border: $themePrimary 2px solid;
 }
 footer {
-  margin-top: 2rem;
+  margin: 2rem 0 2.5rem 0;
   div p, & em { margin: 0; color: darken($text, 15%) }
 }
 article + article {
