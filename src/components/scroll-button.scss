@@ -11,7 +11,9 @@
   color: black;
   text-align: center;
   font-size: 2rem;
-
+  &:focus {
+    outline: none;
+  }
   &:hover {
     opacity: 1;
     animation: wiggle 1s ease;
