@@ -3,14 +3,11 @@ import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 import SharePost from "../components/share-post"
 import Bio from "../components/bio"
-import moment from "moment"
+import formatDate from "../components/format-date"
 import "./blog-post.scss"
 
-
 const BlogPostTemplate = ({ data }) => {
-  const { gitTime } = data.markdownRemark.fields
-  const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
-    : '<Unpublished Post />'
+  const date = formatDate(data.markdownRemark.fields.gitTime)
   const post = data.markdownRemark
   const { title, siteUrl } = data.site.siteMetadata
   const tags = post.frontmatter.tags || []

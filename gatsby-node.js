@@ -1,6 +1,6 @@
 const path = require(`path`)
 const fs = require(`fs`)
-const moment = require(`moment`)
+const dayjs = require(`dayjs`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { execSync } = require(`child_process`)
 
@@ -104,7 +104,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     if (timestamps && timestamps[`${fileName}.md`]) {
       const timestamp = timestamps[`${fileName}.md`][`created`]
-      gitTime = moment.unix(timestamp).format()
+      gitTime = dayjs.unix(timestamp).format()
     } else {
       const relativePath = `blog/${fileName}.md`
       gitTime = execSync(

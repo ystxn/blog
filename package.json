@@ -8,6 +8,7 @@
     "url": "https://https://github.com/ystan-/blog"
   },
   "dependencies": {
+    "dayjs": "^1.8.26",
     "gatsby": "^2.20.12",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-google-analytics": "^2.2.2",

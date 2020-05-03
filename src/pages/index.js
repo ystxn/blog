@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
-import moment from "moment"
+import formatDate from "../components/format-date"
 import Bio from "../components/bio"
 
 const BlogIndex = ({ data }) => {
@@ -13,8 +13,7 @@ const BlogIndex = ({ data }) => {
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         const { gitTime } = node.fields
-        const date = gitTime ? moment(gitTime).format("MMM Do YYYY, h:mma")
-          : '<Unpublished Post />'
+        const date = formatDate(gitTime)
         const tags = node.frontmatter.tags || []
         const tagsList = tags.length === 0 ? '' : tags
           .map(t => <Link key={t} to={`/tags/${t.replace(/ /g, "-")}`}>#{t}</Link>)
