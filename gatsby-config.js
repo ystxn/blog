@@ -55,9 +55,15 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 600,
-              linkImagesToOriginal: true,
+              linkImagesToOriginal: false,
               showCaptions: true,
               quality: 80
+            },
+          },
+          {
+            resolve: `gatsby-remark-images-zoom`,
+            options: {
+              background: '#1e1e1e'
             },
           },
           {
