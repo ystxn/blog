@@ -4,6 +4,7 @@ title: Optimising Java Docker Images
 tags:
 - java
 - docker
+- kubernetes
 image: containers.jpg
 ---
 Containers have evolved very quickly from being an obscure technology to being confused

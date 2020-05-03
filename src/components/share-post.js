@@ -18,7 +18,7 @@ const SharePost = ({ title, source, summary, hashtags, url }) => {
         iconFillColor: 'black'
     }
     return (
-        <footer>
+        <>
             <h4>Share this post:</h4>
             <FacebookShareButton {...shareProps}>
                 <FacebookIcon {...iconProps} />
@@ -32,7 +32,7 @@ const SharePost = ({ title, source, summary, hashtags, url }) => {
             <WhatsappShareButton {...shareProps}>
                 <WhatsappIcon {...iconProps} />
             </WhatsappShareButton>
-        </footer>
+        </>
     )
 }
 export default SharePost

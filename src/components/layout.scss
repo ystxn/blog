@@ -32,6 +32,9 @@ a {
     color: $themeSecondary;
     border-bottom: $themeSecondary 1px dashed;
   }
+  &[href$=jpg], &[href$=jpeg], &[href$=png], &[href$=gif] {
+    &:hover { border: 0 none }
+  }
 }
 h2, h3 { margin-top: 0; font-weight: 900 }
 h3 {

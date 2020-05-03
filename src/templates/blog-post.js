@@ -5,6 +5,7 @@ import SharePost from "../components/share-post"
 import Bio from "../components/bio"
 import formatDate from "../components/format-date"
 import "./blog-post.scss"
+import RelatedPosts from "../components/related-posts"
 
 const BlogPostTemplate = ({ data }) => {
   const date = formatDate(data.markdownRemark.fields.gitTime)
@@ -34,13 +35,16 @@ const BlogPostTemplate = ({ data }) => {
           <p>{tagsList}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <SharePost
-          title={post.frontmatter.title}
-          summary={post.excerpt}
-          hashtags={tags}
-          source={title}
-          url={`${siteUrl}/${post.frontmatter.slug}`}
-        />
+        <footer>
+          <SharePost
+            title={post.frontmatter.title}
+            summary={post.excerpt}
+            hashtags={tags}
+            source={title}
+            url={`${siteUrl}/${post.frontmatter.slug}`}
+          />
+          <RelatedPosts posts={data.allMarkdownRemark} />
+        </footer>
       </article>
       <Bio />
     </>
@@ -50,7 +54,7 @@ const BlogPostTemplate = ({ data }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($slug: String!, $tags: [String]) {
     site {
       siteMetadata {
         title
@@ -71,6 +75,24 @@ export const pageQuery = graphql`
         slug
       }
       timeToRead
+    }
+    allMarkdownRemark(
+      filter: {
+        frontmatter: { tags: { in: $tags } },
+        fields: { slug: { ne: $slug } }
+      }
+      sort: { fields: [fields___slug], order: DESC }
+      limit: 3
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            slug
+            image
+          }
+        }
+      }
     }
   }
 `
