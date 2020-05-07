@@ -1,11 +1,21 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
-import formatDate from "../components/format-date"
+import NewerOlder from "../components/newer-older"
 import Bio from "../components/bio"
+import formatDate from "../components/format-date"
 
-const BlogIndex = ({ data }) => {
+const BlogIndex = ({ pageContext, data }) => {
   const posts = data.allMarkdownRemark.edges
+  const totalCount = data.allMarkdownRemark.totalCount
+  const { numPages, currentPage } = pageContext
+  const newerOlderProps = {}
+  if ((!numPages && totalCount > 5) || currentPage < numPages) {
+    newerOlderProps.olderLink = `/${(currentPage || 1) + 1}`
+  }
+  if (currentPage && currentPage > 1) {
+    newerOlderProps.newerLink = `/${currentPage === 2 ? '' : currentPage - 1}`
+  }
 
   return (
     <>
@@ -47,6 +57,7 @@ const BlogIndex = ({ data }) => {
           </article>
         )
       })}
+      <NewerOlder {...newerOlderProps} />
       <Bio />
     </>
   )
@@ -55,12 +66,14 @@ const BlogIndex = ({ data }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query indexQuery($skip: Int! = 0, $limit: Int! = 5) {
     allMarkdownRemark(
       filter: {
         frontmatter: { templateKey: { ne: "page" } }
       }
       sort: { fields: [fields___slug], order: DESC }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
@@ -77,6 +90,7 @@ export const pageQuery = graphql`
           timeToRead
         }
       }
+      totalCount
     }
   }
 `

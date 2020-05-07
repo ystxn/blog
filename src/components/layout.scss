@@ -112,3 +112,23 @@ footer {
 article + article {
   margin-top: 3rem;
 }
+.newer-older {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  a {
+    svg {
+      fill: #222;
+      position: relative;
+      top: 0.16em;
+    }
+    color: #222;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    background: $themePrimary;
+    padding: 0.78rem 1rem 0.7rem 1rem;
+    border-radius: 0.5rem;
+
+    &:hover { color: black; background: $themeSecondary; border: none }
+  }
+}
