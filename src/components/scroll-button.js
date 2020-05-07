@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { FaAngleUp } from 'react-icons/fa';
 import { CSSTransition } from 'react-transition-group';
 import "./scroll-button.scss"
 
@@ -25,7 +26,7 @@ const ScrollButton = () => {
                 onKeyDown={scrollToTop}
                 className={`scrollButton`}
             >
-                ^
+                <FaAngleUp />
             </div>
         </CSSTransition>
     )
