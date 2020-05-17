@@ -210,6 +210,24 @@ registry/demo  after   5165c278494d  2 minutes ago  123MB # highlight-line
 
 *Way, way faster.*
 
+## ARM builds
+Since I have *vested interest* in running this in my Pi cluster, I've spent some time
+looking for compatible base images as well. This is where it gets confusing as there are
+multiple architecture names that will run on the pi but it will refuse to pull any images
+not marked for `linux/arm`. I've also found that even though I'm running the 64-bit
+kernel, images using the `linux/arm64` arch will not run. So I've scoped compatible images
+down to those using `arm/v7` and [adoptopenjdk](https://hub.docker.com/u/adoptopenjdk)
+seems to have pretty good base images for stage 1 while [arm32v7's debian images](
+https://hub.docker.com/r/arm32v7/debian) work as a good stage 2 base.
+
+```docker
+FROM adoptopenjdk/openjdk14:armv7l-debian-jdk-14.0.1_7
+...
+
+FROM arm32v7/debian:stretch-slim
+...
+```
+
 ## Caveats
 As you've noticed,`jdeps` is not *fool-proof*. I've experienced a couple of scenarios
 where the build process succeeds, only to fail at runtime due to a missing module. Hence,
@@ -218,9 +236,6 @@ These are some common modules to add if your app does the following:
 - `jdk.crypto.ec`: If your app calls third-party REST APIs (that might use elliptic curve
   cryptography in their TLS certificates)
 - `jdk.naming.dns`: If your app connects to mongodb using `mongodb+srv://`
-
-Also, I've yet to find a good setup for ARM builds so the above is really more suitable
-for x86 images.
 
 ## The future..
 is hard to tell. Container technology moves so fast that this technique might become
