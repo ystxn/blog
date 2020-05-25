@@ -128,11 +128,11 @@ com.fasterxml.jackson.databind -> com.fasterxml.jackson.annotation
 
 This gives you a giant map of which dependency needs which module, which are granular
 details we're not interested in. What we need is a comma-separated list of module names to
-feed our `jlink` command later. A bit of shell pipe magic should do.
+feed our `jlink` command later. The `--print-module-deps` argument does that. We will also
+ignore split package warnings by `grep`ing them out.
 
 ```bash
-$ jdeps -s --multi-release=14 --recursive -cp BOOT-INF/lib/* x.jar \
-|cut -d ' ' -f3|sort|uniq|grep '^j'|paste -s -d, -
+$ jdeps --ignore-missing-deps --print-module-deps --multi-release=14 --recursive -cp BOOT-INF/lib/* x.jar|grep -v Warning:
 
 java.base,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.naming,java.prefs,java.rmi,java.scripting,java.security.jgss,java.sql,java.xml,jdk8internals,jdk.httpserver,jdk.unsupported
 ```
