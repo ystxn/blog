@@ -80,6 +80,7 @@ module.exports = {
               target: `_blank`
             }
           },
+          `gatsby-remark-embedder`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`
         ],
