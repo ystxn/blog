@@ -1,9 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Bio from "../components/bio"
 
-export default ({ data }) => {
+const Tags = ({ data }) => {
   const group = data.allMarkdownRemark.group
   const tags = group
     .sort((a, b) => b.totalCount - a.totalCount)
@@ -18,7 +18,7 @@ export default ({ data }) => {
 
   return (
     <>
-      <SEO title="Tags" />
+      <Seo title="Tags" />
       <div>
         <h2>Tags</h2>
         <ul>{tags}</ul>
@@ -27,7 +27,8 @@ export default ({ data }) => {
       <Bio />
     </>
   )
-}
+};
+export default Tags;
 
 export const pageQuery = graphql`
   query {

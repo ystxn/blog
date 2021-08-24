@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Bio from "../components/bio"
 import "./page.scss"
 
@@ -10,7 +10,7 @@ class PageTemplate extends React.Component {
 
     return (
       <>
-        <SEO
+        <Seo
           title={post.frontmatter.title}
           description={post.excerpt}
         />

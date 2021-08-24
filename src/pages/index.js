@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import NewerOlder from "../components/newer-older"
 import Bio from "../components/bio"
 import formatDate from "../components/format-date"
@@ -19,7 +19,7 @@ const BlogIndex = ({ pageContext, data }) => {
 
   return (
     <>
-      <SEO title="Home" />
+      <Seo title="Home" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         const { gitTime } = node.fields

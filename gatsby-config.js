@@ -36,6 +36,8 @@ module.exports = {
         name: `static`,
       },
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -61,7 +63,7 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-images-zoom`,
+            resolve: `gatsby-remark-images-medium-zoom`,
             options: {
               background: '#1e1e1e'
             },
@@ -83,19 +85,11 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: `UA-76500462-2`,
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `YS Learns..`,
-        short_name: `YS Learns..`,
+        short_name: `YS Learns`,
         start_url: `/`,
         background_color: `#1e1e1e`,
         theme_color: `lightseagreen`,
@@ -114,4 +108,8 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-catch-links`
   ],
+  flags: {
+    DEV_SSR: false,
+    DEV_WEBPACK_CACHE: false,
+  },
 }

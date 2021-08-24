@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import SharePost from "../components/share-post"
 import Bio from "../components/bio"
 import formatDate from "../components/format-date"
@@ -18,7 +18,7 @@ const BlogPostTemplate = ({ data }) => {
 
   return (
     <>
-      <SEO
+      <Seo
         title={post.frontmatter.title}
         description={post.excerpt}
         image={`${siteUrl}/${post.frontmatter.image}`}
@@ -81,7 +81,7 @@ export const pageQuery = graphql`
         frontmatter: { tags: { in: $tags } },
         fields: { slug: { ne: $slug } }
       }
-      sort: { fields: [fields___slug], order: DESC }
+      sort: { fields: [frontmatter___slug], order: DESC }
       limit: 3
     ) {
       edges {
