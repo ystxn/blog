@@ -43,7 +43,7 @@
   "devDependencies": {
     "git-date-extractor": "^4.0.1",
     "install-peers": "^1.0.3",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "prettier": "^2.3.2"
   },
   "license": "MIT",
